@@ -1,16 +1,18 @@
-# This is a sample Python script.
+import sys
+import pymysql
+from PyQt6 import QtWidgets
+import Login
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+if __name__ == "__main__":
+    app = QtWidgets.QApplication(sys.argv)
+    db = pymysql.connect(
+        host="localhost",
+        user="root",
+        password="10086",
+        database="library",
+        charset="utf8"
+    )
+    cursor = db.cursor()
+    ui = Login.Ui_Form(cursor)
+    ui.show()
+    sys.exit(app.exec())

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>管理页面</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="addReserve">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>150</y>
+      <width>101</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>预约图书</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="addBorrow">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>250</y>
+      <width>101</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>借阅图书</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="addReturn">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>350</y>
+      <width>101</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>归还图书</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="BookManage">
+    <property name="title">
+     <string>图书管理</string>
+    </property>
+    <addaction name="addBook"/>
+    <addaction name="alterBook"/>
+   </widget>
+   <widget class="QMenu" name="StudentManage">
+    <property name="title">
+     <string>学生管理</string>
+    </property>
+    <addaction name="addStudent"/>
+    <addaction name="alterStudent"/>
+   </widget>
+   <widget class="QMenu" name="UserManage">
+    <property name="title">
+     <string>用户管理</string>
+    </property>
+    <addaction name="addUser"/>
+    <addaction name="alterUser"/>
+   </widget>
+   <widget class="QMenu" name="BadGuy">
+    <property name="title">
+     <string>违期管理</string>
+    </property>
+    <addaction name="badReserve"/>
+    <addaction name="badBorrow"/>
+   </widget>
+   <addaction name="BookManage"/>
+   <addaction name="StudentManage"/>
+   <addaction name="BadGuy"/>
+   <addaction name="UserManage"/>
+  </widget>
+  <action name="addBook">
+   <property name="text">
+    <string>添加图书</string>
+   </property>
+  </action>
+  <action name="alterBook">
+   <property name="text">
+    <string>图书信息维护</string>
+   </property>
+  </action>
+  <action name="addStudent">
+   <property name="text">
+    <string>添加学生</string>
+   </property>
+  </action>
+  <action name="alterStudent">
+   <property name="text">
+    <string>学生信息维护</string>
+   </property>
+  </action>
+  <action name="addUser">
+   <property name="text">
+    <string>添加用户</string>
+   </property>
+  </action>
+  <action name="alterUser">
+   <property name="text">
+    <string>用户信息维护</string>
+   </property>
+  </action>
+  <action name="badReserve">
+   <property name="text">
+    <string>预约信息</string>
+   </property>
+  </action>
+  <action name="badBorrow">
+   <property name="text">
+    <string>借阅信息</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
