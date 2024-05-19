@@ -76,6 +76,10 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 
         self.StudentManage.addAction(self.addStudent)
         self.StudentManage.addAction(self.alterStudent)
+
+        # 学生管理菜单栏绑定事件
+        self.StudentManage.triggered.connect(self.manageStudent)
+
         self.UserManage.addAction(self.addUser)
         self.UserManage.addAction(self.alterUser)
         self.BadGuy.addAction(self.badReserve)
@@ -117,6 +121,12 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
             from alterBook import Ui_Form
             self.alterBook = Ui_Form(self.cursor)
             self.alterBook.show()
+
+    def manageStudent(self, m):
+        if m.text() == "学生信息维护":
+            from alterStudent import Ui_Form
+            self.alterStudent = Ui_Form(self.cursor)
+            self.alterStudent.show()
 
 
 if __name__ == "__main__":

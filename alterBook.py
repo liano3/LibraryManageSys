@@ -147,6 +147,9 @@ class Ui_Form(QtWidgets.QWidget):
         self.deleteSure.setGeometry(QtCore.QRect(640, 120, 81, 31))
         self.deleteSure.setObjectName("deleteSure")
 
+        # 删除按钮点击事件
+        self.deleteSure.clicked.connect(self.delete)
+
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
@@ -311,7 +314,11 @@ class Ui_Form(QtWidgets.QWidget):
     def delete(self):
         bid = self.alterBid.text()
         try:
-            self.cursor.execute("DELETE FROM book WHERE bid = %s", bid)
+            self.cursor.execute("SELECT cover FROM book WHERE bid = " + bid)
+            cover = self.cursor.fetchone()[0]
+            self.cursor.execute("CALL deleteBook(" + bid + ")")
+            import os
+            os.remove("img/" + cover)
             QtWidgets.QMessageBox.information(self, "成功", "删除成功")
         except Exception as e:
             print(e)

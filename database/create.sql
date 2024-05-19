@@ -55,5 +55,6 @@ CREATE TABLE IF NOT EXISTS user (
     username VARCHAR(50) PRIMARY KEY,
     password VARCHAR(50) NOT NULL,
     uid INT NOT NULL,
-    role INT NOT NULL -- 0表示学生，1表示管理员
+    role INT NOT NULL, -- 0表示学生，1表示管理员
+    status INT DEFAULT 0 -- 0表示正常，1表示被冻结
 );
