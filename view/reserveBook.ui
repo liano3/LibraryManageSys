@@ -11,9 +11,9 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>用户管理</string>
+   <string>预约图书</string>
   </property>
-  <widget class="QTableWidget" name="UserTable">
+  <widget class="QTableWidget" name="BookTable">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -24,27 +24,22 @@
    </property>
    <column>
     <property name="text">
-     <string>用户名</string>
+     <string>编号</string>
     </property>
    </column>
    <column>
     <property name="text">
-     <string>密码</string>
+     <string>书名</string>
     </property>
    </column>
    <column>
     <property name="text">
-     <string>学工号</string>
+     <string>作者</string>
     </property>
    </column>
    <column>
     <property name="text">
-     <string>身份</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>状态</string>
+     <string>出版社</string>
     </property>
    </column>
   </widget>
@@ -70,53 +65,33 @@
      </rect>
     </property>
     <property name="text">
-     <string>用户名：</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="selectUname">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>30</y>
-      <width>81</width>
-      <height>21</height>
-     </rect>
+     <string>编   号：</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>220</x>
       <y>30</y>
       <width>53</width>
       <height>15</height>
      </rect>
     </property>
     <property name="text">
-     <string>编   号：</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="selectUid">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>30</y>
-      <width>81</width>
-      <height>21</height>
-     </rect>
+     <string>书   名：</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>320</x>
+      <x>420</x>
       <y>30</y>
       <width>53</width>
       <height>15</height>
      </rect>
     </property>
     <property name="text">
-     <string>身   份：</string>
+     <string>作   者：</string>
     </property>
    </widget>
    <widget class="QPushButton" name="searchSure">
@@ -132,68 +107,35 @@
      <string>搜索</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
+   <widget class="QLineEdit" name="selectBid">
     <property name="geometry">
      <rect>
-      <x>490</x>
+      <x>70</x>
       <y>30</y>
-      <width>53</width>
-      <height>15</height>
+      <width>113</width>
+      <height>21</height>
      </rect>
-    </property>
-    <property name="text">
-     <string>状   态：</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="selectStatus">
+   <widget class="QLineEdit" name="selectBname">
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>270</x>
       <y>30</y>
-      <width>69</width>
-      <height>22</height>
+      <width>113</width>
+      <height>21</height>
      </rect>
     </property>
-    <item>
-     <property name="text">
-      <string>全部</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>正常</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>冻结</string>
-     </property>
-    </item>
    </widget>
-   <widget class="QComboBox" name="selectRole">
+   <widget class="QLineEdit" name="selectAuthor">
     <property name="geometry">
      <rect>
-      <x>370</x>
+      <x>470</x>
       <y>30</y>
-      <width>69</width>
-      <height>22</height>
+      <width>113</width>
+      <height>21</height>
      </rect>
     </property>
-    <item>
-     <property name="text">
-      <string>全部</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>学生 </string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>管理员</string>
-     </property>
-    </item>
    </widget>
   </widget>
   <widget class="QGroupBox" name="groupBox_2">
@@ -206,7 +148,7 @@
     </rect>
    </property>
    <property name="title">
-    <string>表单</string>
+    <string>预览</string>
    </property>
    <widget class="QWidget" name="formLayoutWidget">
     <property name="geometry">
@@ -214,7 +156,7 @@
       <x>10</x>
       <y>20</y>
       <width>311</width>
-      <height>221</height>
+      <height>171</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout">
@@ -239,114 +181,66 @@
      <item row="0" column="0">
       <widget class="QLabel" name="label_5">
        <property name="text">
-        <string>用户名：</string>
+        <string>编   号：</string>
        </property>
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QLineEdit" name="alterUname"/>
+      <widget class="QLineEdit" name="viewBid"/>
      </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="label_8">
+      <widget class="QLabel" name="label_6">
        <property name="text">
-        <string>密  码：</string>
+        <string>书   名：</string>
        </property>
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QLineEdit" name="alterPassword"/>
+      <widget class="QLineEdit" name="viewBname"/>
      </item>
      <item row="2" column="0">
-      <widget class="QLabel" name="label_6">
+      <widget class="QLabel" name="label_7">
        <property name="text">
-        <string>学工号：</string>
+        <string>作   者：</string>
        </property>
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QLineEdit" name="alterUid"/>
+      <widget class="QLineEdit" name="viewAuthor"/>
      </item>
      <item row="3" column="0">
-      <widget class="QLabel" name="label_7">
+      <widget class="QLabel" name="label_8">
        <property name="text">
-        <string>身   份：</string>
+        <string>出版社：</string>
        </property>
       </widget>
      </item>
      <item row="3" column="1">
-      <widget class="QComboBox" name="alterRole">
-       <item>
-        <property name="text">
-         <string>学生</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>管理员</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="4" column="0">
-      <widget class="QLabel" name="label_9">
-       <property name="text">
-        <string>状   态：</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="1">
-      <widget class="QComboBox" name="alterStatus">
-       <item>
-        <property name="text">
-         <string>正常</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>冻结</string>
-        </property>
-       </item>
-      </widget>
+      <widget class="QLineEdit" name="viewPublisher"/>
      </item>
     </layout>
    </widget>
-   <widget class="QPushButton" name="alterSure">
+   <widget class="QGraphicsView" name="viewCover">
     <property name="geometry">
      <rect>
-      <x>530</x>
-      <y>180</y>
-      <width>81</width>
-      <height>31</height>
+      <x>350</x>
+      <y>20</y>
+      <width>181</width>
+      <height>161</height>
      </rect>
     </property>
-    <property name="text">
-     <string>修改</string>
-    </property>
    </widget>
-   <widget class="QPushButton" name="deleteSure">
+   <widget class="QPushButton" name="reserveSure">
     <property name="geometry">
      <rect>
       <x>640</x>
-      <y>180</y>
+      <y>150</y>
       <width>81</width>
       <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>删除</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="addSure">
-    <property name="geometry">
-     <rect>
-      <x>420</x>
-      <y>180</y>
-      <width>81</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>添加</string>
+     <string>预约</string>
     </property>
    </widget>
   </widget>

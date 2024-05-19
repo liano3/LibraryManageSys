@@ -95,7 +95,7 @@ class Ui_Form(QtWidgets.QWidget):
                     from AdminPage import Ui_MainWindow
                     self.adminPage = Ui_MainWindow(cursor, username)
                     self.adminPage.show()
-                    self.hide()
+                    self.close()
                 else:
                     print("学生")
             else:

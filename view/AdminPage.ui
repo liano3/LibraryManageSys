@@ -78,13 +78,6 @@
     <addaction name="addStudent"/>
     <addaction name="alterStudent"/>
    </widget>
-   <widget class="QMenu" name="UserManage">
-    <property name="title">
-     <string>用户管理</string>
-    </property>
-    <addaction name="addUser"/>
-    <addaction name="alterUser"/>
-   </widget>
    <widget class="QMenu" name="BadGuy">
     <property name="title">
      <string>违期管理</string>
@@ -92,10 +85,18 @@
     <addaction name="badReserve"/>
     <addaction name="badBorrow"/>
    </widget>
+   <widget class="QMenu" name="AccountManage">
+    <property name="title">
+     <string>账号设置</string>
+    </property>
+    <addaction name="alterProfile"/>
+    <addaction name="alterPassword"/>
+    <addaction name="logOut"/>
+   </widget>
    <addaction name="BookManage"/>
    <addaction name="StudentManage"/>
    <addaction name="BadGuy"/>
-   <addaction name="UserManage"/>
+   <addaction name="AccountManage"/>
   </widget>
   <action name="addBook">
    <property name="text">
@@ -135,6 +136,21 @@
   <action name="badBorrow">
    <property name="text">
     <string>借阅信息</string>
+   </property>
+  </action>
+  <action name="alterProfile">
+   <property name="text">
+    <string>修改资料</string>
+   </property>
+  </action>
+  <action name="logOut">
+   <property name="text">
+    <string>退出登录</string>
+   </property>
+  </action>
+  <action name="alterPassword">
+   <property name="text">
+    <string>修改密码</string>
    </property>
   </action>
  </widget>
