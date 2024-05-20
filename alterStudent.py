@@ -22,7 +22,7 @@ class Ui_Form(QtWidgets.QWidget):
         self.StudentTable = QtWidgets.QTableWidget(parent=Form)
         self.StudentTable.setGeometry(QtCore.QRect(40, 111, 721, 211))
         self.StudentTable.setObjectName("StudentTable")
-        self.StudentTable.setColumnCount(4)
+        self.StudentTable.setColumnCount(5)
         self.StudentTable.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         self.StudentTable.setHorizontalHeaderItem(0, item)
@@ -32,6 +32,8 @@ class Ui_Form(QtWidgets.QWidget):
         self.StudentTable.setHorizontalHeaderItem(2, item)
         item = QtWidgets.QTableWidgetItem()
         self.StudentTable.setHorizontalHeaderItem(3, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.StudentTable.setHorizontalHeaderItem(4, item)
         self.groupBox = QtWidgets.QGroupBox(parent=Form)
         self.groupBox.setGeometry(QtCore.QRect(40, 20, 721, 71))
         self.groupBox.setObjectName("groupBox")
@@ -91,6 +93,14 @@ class Ui_Form(QtWidgets.QWidget):
         self.alterTel = QtWidgets.QLineEdit(parent=self.formLayoutWidget)
         self.alterTel.setObjectName("alterTel")
         self.formLayout.setWidget(3, QtWidgets.QFormLayout.ItemRole.FieldRole, self.alterTel)
+        self.label_4 = QtWidgets.QLabel(parent=self.formLayoutWidget)
+        self.label_4.setObjectName("label_4")
+        self.formLayout.setWidget(4, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label_4)
+        self.alterStatus = QtWidgets.QComboBox(parent=self.formLayoutWidget)
+        self.alterStatus.setObjectName("alterStatus")
+        self.alterStatus.addItem("")
+        self.alterStatus.addItem("")
+        self.formLayout.setWidget(4, QtWidgets.QFormLayout.ItemRole.FieldRole, self.alterStatus)
         self.alterSure = QtWidgets.QPushButton(parent=self.groupBox_2)
         self.alterSure.setGeometry(QtCore.QRect(530, 180, 81, 31))
         self.alterSure.setObjectName("alterSure")
@@ -126,6 +136,8 @@ class Ui_Form(QtWidgets.QWidget):
         item.setText(_translate("Form", "专业"))
         item = self.StudentTable.horizontalHeaderItem(3)
         item.setText(_translate("Form", "电话号码"))
+        item = self.StudentTable.horizontalHeaderItem(4)
+        item.setText(_translate("Form", "状态"))
         self.groupBox.setTitle(_translate("Form", "筛选"))
         self.label.setText(_translate("Form", "学   号："))
         self.label_2.setText(_translate("Form", "姓   名："))
@@ -136,20 +148,27 @@ class Ui_Form(QtWidgets.QWidget):
         self.label_6.setText(_translate("Form", "姓   名："))
         self.label_7.setText(_translate("Form", "专   业："))
         self.label_8.setText(_translate("Form", "电   话："))
+        self.label_4.setText(_translate("Form", "状   态："))
+        self.alterStatus.setItemText(0, _translate("Form", "正常"))
+        self.alterStatus.setItemText(1, _translate("Form", "冻结"))
         self.alterSure.setText(_translate("Form", "修改"))
         self.deleteSure.setText(_translate("Form", "删除"))
         self.addSure.setText(_translate("Form", "添加"))
 
     def initStudentTable(self):
         self.StudentTable.setRowCount(0)
-        sql = "select * from student"
+        sql = "select sid, sname, major, tel, status from student, user where student.sid = user.uid and user.role = 0"
         self.cursor.execute(sql)
         result = self.cursor.fetchall()
         for row in result:
             rowPosition = self.StudentTable.rowCount()
             self.StudentTable.insertRow(rowPosition)
-            for i in range(len(row)):
+            for i in range(len(row) - 1):
                 self.StudentTable.setItem(rowPosition, i, QtWidgets.QTableWidgetItem(str(row[i])))
+            if row[4] == 0:
+                self.StudentTable.setItem(rowPosition, 4, QtWidgets.QTableWidgetItem("正常"))
+            else:
+                self.StudentTable.setItem(rowPosition, 4, QtWidgets.QTableWidgetItem("冻结"))
         # 隐藏行号
         self.StudentTable.verticalHeader().setVisible(False)
         # 不可编辑
@@ -192,6 +211,12 @@ class Ui_Form(QtWidgets.QWidget):
         self.alterSname.setText(self.StudentTable.item(row, 1).text())
         self.alterMajor.setText(self.StudentTable.item(row, 2).text())
         self.alterTel.setText(self.StudentTable.item(row, 3).text())
+        # 设置状态下拉框
+        status = self.StudentTable.item(row, 4).text()
+        if status == "正常":
+            self.alterStatus.setCurrentIndex(0)
+        else:
+            self.alterStatus.setCurrentIndex(1)
 
     def alterStudent(self):
         sid = self.alterSid.text()
@@ -208,6 +233,16 @@ class Ui_Form(QtWidgets.QWidget):
         sname = self.alterSname.text()
         major = self.alterMajor.text()
         tel = self.alterTel.text()
+        status = self.alterStatus.currentIndex()
+        oldStatus = self.StudentTable.item(self.StudentTable.currentRow(), 4).text()
+        oldStatus = 0 if oldStatus == "正常" else 1
+        if status != oldStatus:
+            sql = "call unkillUser({}, {})".format(sid, status)
+            try:
+                self.cursor.execute(sql)
+            except Exception as e:
+                print(e)
+                QtWidgets.QMessageBox.information(self, "提示", "状态修改失败")
         sql = "update student set sname = '{}', major = '{}', tel = '{}' where sid = '{}'".format(sname, major, tel, sid)
         try:
             self.cursor.execute(sql)

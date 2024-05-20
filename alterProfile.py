@@ -14,6 +14,10 @@ class Ui_Form(QtWidgets.QWidget):
         super(Ui_Form, self).__init__()
         self.cursor = cursor
         self.username = username
+        sql = "select role from user where username = '{}'".format(username)
+        cursor.execute(sql)
+        role = cursor.fetchone()[0]
+        self.role = role
         self.setupUi(self)
         self.initUserInfo()
 
@@ -72,7 +76,10 @@ class Ui_Form(QtWidgets.QWidget):
 
     # 初始化用户信息
     def initUserInfo(self):
-        sql = "select username, aname, tel, password from user, admin where user.uid = admin.aid and user.username = %s"
+        if self.role == 1:
+            sql = "select username, aname, tel, password from user, admin where user.uid = admin.aid and user.username = %s"
+        else:
+            sql = "select username, sname, tel, password from user, student where user.uid = student.sid and user.username = %s"
         self.cursor.execute(sql, (self.username,))
         result = self.cursor.fetchone()
         self.alterUsername.setText(result[0])
@@ -96,7 +103,10 @@ class Ui_Form(QtWidgets.QWidget):
             QtWidgets.QMessageBox.warning(self, "警告", "密码错误！")
             return
         # 修改信息
-        sql = "update user, admin set user.username = %s, aname = %s, tel = %s where user.uid = admin.aid and user.username = %s"
+        if self.role == 1:
+            sql = "update user, admin set user.username = %s, aname = %s, tel = %s where user.uid = admin.aid and user.username = %s"
+        else:
+            sql = "update user, student set user.username = %s, sname = %s, tel = %s where user.uid = student.sid and user.username = %s"
         try:
             self.cursor.execute(sql, (username, name, tel, self.username))
             self.cursor.connection.commit()

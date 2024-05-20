@@ -55,6 +55,14 @@ BEGIN
     DELETE FROM user WHERE uid = OLD.sid;
 END;
 
+-- 取消预约的触发器
+CREATE TRIGGER IF NOT EXISTS cancelReserve
+AFTER DELETE ON reserve
+FOR EACH ROW
+BEGIN
+    UPDATE book SET status = 0 WHERE bid = OLD.bid;
+END;
+
 -- 预约书籍的存储过程
 -- DROP PROCEDURE IF EXISTS reserveBook;
 CREATE PROCEDURE IF NOT EXISTS reserveBook(IN studentId INT, IN bookId INT, IN takeDate DATE)
@@ -76,8 +84,8 @@ label: BEGIN
 END;
 
 -- 借阅书籍的存储过程
--- DROP PROCEDURE IF EXISTS borrowBook;
-CREATE PROCEDURE IF NOT EXISTS borrowBook(IN studentId INT, IN bookId INT, IN takeDate DATE, IN returnDate DATE)
+DROP PROCEDURE IF EXISTS borrowBook;
+CREATE PROCEDURE IF NOT EXISTS borrowBook(IN studentId INT, IN bookId INT, IN dueDate DATE)
 label: BEGIN
     START TRANSACTION;
     -- 判断是否处于冻结状态
@@ -88,19 +96,53 @@ label: BEGIN
         -- 结束存储过程
         LEAVE label;
     END IF;
-    -- 判断是否已经预约
-    IF (SELECT COUNT(*) FROM reserve WHERE sid = studentId AND bid = bookId) = 0 THEN
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = '您还未预约该书籍，无法借阅！';
+    -- 插入借阅记录
+    INSERT INTO borrow(sid, bid, borrow_date, due_date) VALUES (studentId, bookId, CURDATE(), dueDate);
+    -- 更新书籍状态
+    UPDATE book SET status = 2 WHERE bid = bookId;
+    -- 删除预约记录
+    DELETE FROM reserve WHERE sid = studentId AND bid = bookId;
+    COMMIT;
+END;
+
+-- 还书的存储过程
+DROP PROCEDURE IF EXISTS returnBook;
+CREATE PROCEDURE IF NOT EXISTS returnBook(IN studentId INT, IN bookId INT)
+label: BEGIN
+    START TRANSACTION;
+    -- 判断是否处于冻结状态
+    IF (SELECT status FROM student, user WHERE student.sid = studentId AND student.sid = user.uid AND user.role = 0) = 1 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = '您的账号已被冻结，无法操作！';
         -- 回滚事务
         ROLLBACK;
         -- 结束存储过程
         LEAVE label;
     END IF;
-    -- 插入借阅记录
-    INSERT INTO borrow(sid, bid, borrow_date, take_date, return_date) VALUES (studentId, bookId, CURDATE(), takeDate, returnDate);
+    -- 删除借阅记录
+    DELETE FROM borrow WHERE sid = studentId AND bid = bookId;
     -- 更新书籍状态
-    UPDATE book SET status = 2 WHERE bid = bookId;
+    UPDATE book SET status = 0 WHERE bid = bookId;
+    COMMIT;
+END;
+
+-- Kill
+DROP PROCEDURE IF EXISTS killUser;
+CREATE PROCEDURE IF NOT EXISTS killUser(IN studentId INT)
+label: BEGIN
+    START TRANSACTION;
     -- 删除预约记录
-    DELETE FROM reserve WHERE sid = studentId AND bid = bookId;
+    DELETE FROM reserve WHERE sid = studentId;
+    -- 冻结用户
+    UPDATE user SET status = 1 WHERE uid = studentId and role = 0;
+    COMMIT;
+END;
+
+-- Unkill
+DROP PROCEDURE IF EXISTS unkillUser;
+CREATE PROCEDURE IF NOT EXISTS unkillUser(IN studentId INT, IN s INT)
+label: BEGIN
+    START TRANSACTION;
+    -- 解冻用户
+    UPDATE user SET status = s WHERE uid = studentId and role = 0;
     COMMIT;
 END;

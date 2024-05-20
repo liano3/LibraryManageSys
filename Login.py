@@ -31,13 +31,13 @@ class Ui_Form(QtWidgets.QWidget):
         self.label_2 = QtWidgets.QLabel(parent=self.formLayoutWidget)
         self.label_2.setObjectName("label_2")
         self.formLayout_2.setWidget(1, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label_2)
+        self.usernameInput = QtWidgets.QLineEdit(parent=self.formLayoutWidget)
+        self.usernameInput.setObjectName("usernameInput")
+        self.formLayout_2.setWidget(0, QtWidgets.QFormLayout.ItemRole.FieldRole, self.usernameInput)
         self.passwordInput = QtWidgets.QLineEdit(parent=self.formLayoutWidget)
         self.passwordInput.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
         self.passwordInput.setObjectName("passwordInput")
         self.formLayout_2.setWidget(1, QtWidgets.QFormLayout.ItemRole.FieldRole, self.passwordInput)
-        self.usernameInput = QtWidgets.QLineEdit(parent=self.formLayoutWidget)
-        self.usernameInput.setObjectName("usernameInput")
-        self.formLayout_2.setWidget(0, QtWidgets.QFormLayout.ItemRole.FieldRole, self.usernameInput)
         self.label_3 = QtWidgets.QLabel(parent=Form)
         self.label_3.setGeometry(QtCore.QRect(130, 320, 48, 19))
         self.label_3.setObjectName("label_3")
@@ -96,7 +96,10 @@ class Ui_Form(QtWidgets.QWidget):
                     self.adminPage.show()
                     self.close()
                 else:
-                    print("学生")
+                    from StudentPage import Ui_MainWindow
+                    self.studentPage = Ui_MainWindow(cursor, username)
+                    self.studentPage.show()
+                    self.close()
             else:
                 QtWidgets.QMessageBox.warning(None, "错误", "登录失败")
 

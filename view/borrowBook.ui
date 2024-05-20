@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>预约图书</string>
+   <string>借阅图书</string>
   </property>
   <widget class="QTableWidget" name="BookTable">
    <property name="geometry">
@@ -71,7 +71,7 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>220</x>
+      <x>180</x>
       <y>30</y>
       <width>53</width>
       <height>15</height>
@@ -84,7 +84,7 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>420</x>
+      <x>340</x>
       <y>30</y>
       <width>53</width>
       <height>15</height>
@@ -112,7 +112,7 @@
      <rect>
       <x>70</x>
       <y>30</y>
-      <width>113</width>
+      <width>91</width>
       <height>21</height>
      </rect>
     </property>
@@ -120,9 +120,9 @@
    <widget class="QLineEdit" name="selectBname">
     <property name="geometry">
      <rect>
-      <x>270</x>
+      <x>230</x>
       <y>30</y>
-      <width>113</width>
+      <width>91</width>
       <height>21</height>
      </rect>
     </property>
@@ -130,12 +130,45 @@
    <widget class="QLineEdit" name="selectAuthor">
     <property name="geometry">
      <rect>
-      <x>470</x>
+      <x>390</x>
       <y>30</y>
-      <width>113</width>
+      <width>91</width>
       <height>21</height>
      </rect>
     </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>30</y>
+      <width>53</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>状   态：</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="selectStatus">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>30</y>
+      <width>69</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>已预约</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>在馆</string>
+     </property>
+    </item>
    </widget>
   </widget>
   <widget class="QGroupBox" name="groupBox_2">
@@ -230,7 +263,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="reserveSure">
+   <widget class="QPushButton" name="borrowSure">
     <property name="geometry">
      <rect>
       <x>640</x>
@@ -240,20 +273,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>预约</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="reserveSure_2">
-    <property name="geometry">
-     <rect>
-      <x>640</x>
-      <y>90</y>
-      <width>81</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>取消预约</string>
+     <string>借阅</string>
     </property>
    </widget>
   </widget>

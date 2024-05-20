@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'reserveBook.ui'
+# Form implementation generated from reading ui file 'borrowBook.ui'
 #
 # Created by: PyQt6 UI code generator 6.4.2
 #
@@ -39,23 +39,31 @@ class Ui_Form(QtWidgets.QWidget):
         self.label.setGeometry(QtCore.QRect(20, 30, 53, 15))
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(parent=self.groupBox)
-        self.label_2.setGeometry(QtCore.QRect(220, 30, 53, 15))
+        self.label_2.setGeometry(QtCore.QRect(180, 30, 53, 15))
         self.label_2.setObjectName("label_2")
         self.label_3 = QtWidgets.QLabel(parent=self.groupBox)
-        self.label_3.setGeometry(QtCore.QRect(420, 30, 53, 15))
+        self.label_3.setGeometry(QtCore.QRect(340, 30, 53, 15))
         self.label_3.setObjectName("label_3")
         self.searchSure = QtWidgets.QPushButton(parent=self.groupBox)
         self.searchSure.setGeometry(QtCore.QRect(640, 20, 81, 31))
         self.searchSure.setObjectName("searchSure")
         self.selectBid = QtWidgets.QLineEdit(parent=self.groupBox)
-        self.selectBid.setGeometry(QtCore.QRect(70, 30, 113, 21))
+        self.selectBid.setGeometry(QtCore.QRect(70, 30, 91, 21))
         self.selectBid.setObjectName("selectBid")
         self.selectBname = QtWidgets.QLineEdit(parent=self.groupBox)
-        self.selectBname.setGeometry(QtCore.QRect(270, 30, 113, 21))
+        self.selectBname.setGeometry(QtCore.QRect(230, 30, 91, 21))
         self.selectBname.setObjectName("selectBname")
         self.selectAuthor = QtWidgets.QLineEdit(parent=self.groupBox)
-        self.selectAuthor.setGeometry(QtCore.QRect(470, 30, 113, 21))
+        self.selectAuthor.setGeometry(QtCore.QRect(390, 30, 91, 21))
         self.selectAuthor.setObjectName("selectAuthor")
+        self.label_4 = QtWidgets.QLabel(parent=self.groupBox)
+        self.label_4.setGeometry(QtCore.QRect(500, 30, 53, 15))
+        self.label_4.setObjectName("label_4")
+        self.selectStatus = QtWidgets.QComboBox(parent=self.groupBox)
+        self.selectStatus.setGeometry(QtCore.QRect(550, 30, 69, 22))
+        self.selectStatus.setObjectName("selectStatus")
+        self.selectStatus.addItem("")
+        self.selectStatus.addItem("")
         self.groupBox_2 = QtWidgets.QGroupBox(parent=Form)
         self.groupBox_2.setGeometry(QtCore.QRect(40, 330, 721, 251))
         self.groupBox_2.setObjectName("groupBox_2")
@@ -94,17 +102,15 @@ class Ui_Form(QtWidgets.QWidget):
         self.viewCover = QtWidgets.QGraphicsView(parent=self.groupBox_2)
         self.viewCover.setGeometry(QtCore.QRect(350, 20, 181, 161))
         self.viewCover.setObjectName("viewCover")
-        self.reserveSure = QtWidgets.QPushButton(parent=self.groupBox_2)
-        self.reserveSure.setGeometry(QtCore.QRect(640, 150, 81, 31))
-        self.reserveSure.setObjectName("reserveSure")
+        self.borrowSure = QtWidgets.QPushButton(parent=self.groupBox_2)
+        self.borrowSure.setGeometry(QtCore.QRect(640, 150, 81, 31))
+        self.borrowSure.setObjectName("borrowSure")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
-        # 绑定事件
         self.searchSure.clicked.connect(self.searchBook)
         self.BookTable.clicked.connect(self.viewBook)
-        # 设置预览信息不可编辑，设置背景颜色
         self.viewBid.setReadOnly(True)
         self.viewBname.setReadOnly(True)
         self.viewAuthor.setReadOnly(True)
@@ -113,12 +119,11 @@ class Ui_Form(QtWidgets.QWidget):
         self.viewBname.setStyleSheet("background-color: #eee;")
         self.viewAuthor.setStyleSheet("background-color: #eee;")
         self.viewPublisher.setStyleSheet("background-color: #eee;")
-        # 预约按钮
-        self.reserveSure.clicked.connect(self.reserveBook)
+        self.borrowSure.clicked.connect(self.borrowBook)
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "预约图书"))
+        Form.setWindowTitle(_translate("Form", "借阅图书"))
         item = self.BookTable.horizontalHeaderItem(0)
         item.setText(_translate("Form", "编号"))
         item = self.BookTable.horizontalHeaderItem(1)
@@ -132,16 +137,19 @@ class Ui_Form(QtWidgets.QWidget):
         self.label_2.setText(_translate("Form", "书   名："))
         self.label_3.setText(_translate("Form", "作   者："))
         self.searchSure.setText(_translate("Form", "搜索"))
+        self.label_4.setText(_translate("Form", "状   态："))
+        self.selectStatus.setItemText(0, _translate("Form", "已预约"))
+        self.selectStatus.setItemText(1, _translate("Form", "在馆"))
         self.groupBox_2.setTitle(_translate("Form", "预览"))
         self.label_5.setText(_translate("Form", "编   号："))
         self.label_6.setText(_translate("Form", "书   名："))
         self.label_7.setText(_translate("Form", "作   者："))
         self.label_8.setText(_translate("Form", "出版社："))
-        self.reserveSure.setText(_translate("Form", "预约"))
+        self.borrowSure.setText(_translate("Form", "借阅"))
 
     def initBookTable(self):
         self.BookTable.setRowCount(0)
-        self.cursor.execute("select bid, bname, author, publisher from book where status = 0")
+        self.cursor.execute("select bid, bname, author, publisher from book where status = 1")
         data = self.cursor.fetchall()
         for i in range(len(data)):
             self.BookTable.insertRow(i)
@@ -155,16 +163,25 @@ class Ui_Form(QtWidgets.QWidget):
         bid = self.selectBid.text()
         bname = self.selectBname.text()
         author = self.selectAuthor.text()
+        # 选择的状态
+        status = self.selectStatus.currentText()
+        if status == "在馆":
+            status = 0
+        elif status == "已预约":
+            status = 1
+        # print(bid, bname, author, status)
         self.BookTable.setRowCount(0)
-        sql = "select bid, bname, author, publisher from book where bid like '%{}%' and bname like '%{}%' and author like '%{}%' and status = 0".format(bid, bname, author)
-        self.cursor.execute(sql)
+        sql = "select bid, bname, author, publisher from book where bid like '%{}%' and bname like '%{}%' and author like '%{}%' and status = {}".format(bid, bname, author, status)
+        try:
+            self.cursor.execute(sql)
+        except Exception as e:
+            print(e)
         data = self.cursor.fetchall()
         for i in range(len(data)):
             self.BookTable.insertRow(i)
             for j in range(4):
                 self.BookTable.setItem(i, j, QtWidgets.QTableWidgetItem(str(data[i][j])))
 
-    # 预览书籍信息
     def viewBook(self):
         row = self.BookTable.currentRow()
         bid = self.BookTable.item(row, 0).text()
@@ -180,14 +197,11 @@ class Ui_Form(QtWidgets.QWidget):
         scene.addPixmap(cover)
         self.viewCover.setScene(scene)
 
-    # 预约书籍
-    def reserveBook(self):
-        # 获得书籍编号
+    def borrowBook(self):
         bid = self.viewBid.text()
-        # 打开预约表单
-        from reserveForm import Ui_Form
-        self.reserveForm = Ui_Form(self.cursor, bid)
-        self.reserveForm.show()
+        from borrowForm import Ui_Form
+        self.borrowForm = Ui_Form(self.cursor, bid)
+        self.borrowForm.show()
 
 
 if __name__ == "__main__":

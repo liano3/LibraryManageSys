@@ -17,7 +17,7 @@
    <widget class="QGroupBox" name="server">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>210</x>
       <y>90</y>
       <width>321</width>
       <height>371</height>
@@ -62,59 +62,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>违期管理</string>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QGroupBox" name="manage">
-    <property name="geometry">
-     <rect>
-      <x>430</x>
-      <y>90</y>
-      <width>321</width>
-      <height>371</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>管理</string>
-    </property>
-    <widget class="QPushButton" name="bookAlter">
-     <property name="geometry">
-      <rect>
-       <x>110</x>
-       <y>170</y>
-       <width>101</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>图书信息维护</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="userAlter">
-     <property name="geometry">
-      <rect>
-       <x>110</x>
-       <y>280</y>
-       <width>101</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>用户信息维护</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="bookAdd">
-     <property name="geometry">
-      <rect>
-       <x>110</x>
-       <y>60</y>
-       <width>101</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>图书添加</string>
+      <string>还书</string>
      </property>
     </widget>
    </widget>

@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'AdminPage.ui'
+# Form implementation generated from reading ui file 'StudentPage.ui'
 #
 # Created by: PyQt6 UI code generator 6.4.2
 #
@@ -14,6 +14,10 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         super(Ui_MainWindow, self).__init__()
         self.cursor = cursor
         self.username = username
+        sql = "select uid from user where username = '{}'".format(username)
+        cursor.execute(sql)
+        uid = cursor.fetchone()[0]
+        self.sid = uid
         self.setupUi(self)
 
     def setupUi(self, MainWindow):
@@ -22,7 +26,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.server = QtWidgets.QGroupBox(parent=self.centralwidget)
-        self.server.setGeometry(QtCore.QRect(50, 90, 321, 371))
+        self.server.setGeometry(QtCore.QRect(210, 90, 321, 371))
         self.server.setObjectName("server")
         self.addReserve = QtWidgets.QPushButton(parent=self.server)
         self.addReserve.setGeometry(QtCore.QRect(110, 60, 101, 51))
@@ -33,18 +37,6 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.addReturn = QtWidgets.QPushButton(parent=self.server)
         self.addReturn.setGeometry(QtCore.QRect(110, 280, 101, 51))
         self.addReturn.setObjectName("addReturn")
-        self.manage = QtWidgets.QGroupBox(parent=self.centralwidget)
-        self.manage.setGeometry(QtCore.QRect(430, 90, 321, 371))
-        self.manage.setObjectName("manage")
-        self.bookAlter = QtWidgets.QPushButton(parent=self.manage)
-        self.bookAlter.setGeometry(QtCore.QRect(110, 170, 101, 51))
-        self.bookAlter.setObjectName("bookAlter")
-        self.userAlter = QtWidgets.QPushButton(parent=self.manage)
-        self.userAlter.setGeometry(QtCore.QRect(110, 280, 101, 51))
-        self.userAlter.setObjectName("userAlter")
-        self.bookAdd = QtWidgets.QPushButton(parent=self.manage)
-        self.bookAdd.setGeometry(QtCore.QRect(110, 60, 101, 51))
-        self.bookAdd.setObjectName("bookAdd")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(parent=MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -55,6 +47,22 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.AccountManage = QtWidgets.QMenu(parent=self.menubar)
         self.AccountManage.setObjectName("AccountManage")
         MainWindow.setMenuBar(self.menubar)
+        self.addBook = QtGui.QAction(parent=MainWindow)
+        self.addBook.setObjectName("addBook")
+        self.alterBook = QtGui.QAction(parent=MainWindow)
+        self.alterBook.setObjectName("alterBook")
+        self.addStudent = QtGui.QAction(parent=MainWindow)
+        self.addStudent.setObjectName("addStudent")
+        self.alterStudent = QtGui.QAction(parent=MainWindow)
+        self.alterStudent.setObjectName("alterStudent")
+        self.addUser = QtGui.QAction(parent=MainWindow)
+        self.addUser.setObjectName("addUser")
+        self.alterUser = QtGui.QAction(parent=MainWindow)
+        self.alterUser.setObjectName("alterUser")
+        self.badReserve = QtGui.QAction(parent=MainWindow)
+        self.badReserve.setObjectName("badReserve")
+        self.badBorrow = QtGui.QAction(parent=MainWindow)
+        self.badBorrow.setObjectName("badBorrow")
         self.alterProfile = QtGui.QAction(parent=MainWindow)
         self.alterProfile.setObjectName("alterProfile")
         self.logOut = QtGui.QAction(parent=MainWindow)
@@ -71,17 +79,13 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 
         # 设置状态栏内容
         mylabel = QtWidgets.QLabel()
-        mylabel.setText("欢迎您，管理员" + self.username + "！")
+        mylabel.setText("欢迎您，学生" + self.username + "！")
         self.statusbar.addWidget(mylabel)
         # 绑定事件
         self.addReserve.clicked.connect(self.reserveBook)
         self.addBorrow.clicked.connect(self.borrowBook)
         self.addReturn.clicked.connect(self.manage_table)
-        self.bookAdd.clicked.connect(self.addBook)
-        self.bookAlter.clicked.connect(self.alterBook)
-        self.userAlter.clicked.connect(self.alterUser)
         self.AccountManage.triggered.connect(self.manageAccount)
-
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -89,30 +93,19 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.server.setTitle(_translate("MainWindow", "服务"))
         self.addReserve.setText(_translate("MainWindow", "预约图书"))
         self.addBorrow.setText(_translate("MainWindow", "借阅图书"))
-        self.addReturn.setText(_translate("MainWindow", "违期管理"))
-        self.manage.setTitle(_translate("MainWindow", "管理"))
-        self.bookAlter.setText(_translate("MainWindow", "图书信息维护"))
-        self.userAlter.setText(_translate("MainWindow", "用户信息维护"))
-        self.bookAdd.setText(_translate("MainWindow", "图书添加"))
+        self.addReturn.setText(_translate("MainWindow", "还书"))
         self.AccountManage.setTitle(_translate("MainWindow", "账号设置"))
+        self.addBook.setText(_translate("MainWindow", "添加图书"))
+        self.alterBook.setText(_translate("MainWindow", "图书信息维护"))
+        self.addStudent.setText(_translate("MainWindow", "添加学生"))
+        self.alterStudent.setText(_translate("MainWindow", "学生信息维护"))
+        self.addUser.setText(_translate("MainWindow", "添加用户"))
+        self.alterUser.setText(_translate("MainWindow", "用户信息维护"))
+        self.badReserve.setText(_translate("MainWindow", "预约信息"))
+        self.badBorrow.setText(_translate("MainWindow", "借阅信息"))
         self.alterProfile.setText(_translate("MainWindow", "修改资料"))
         self.logOut.setText(_translate("MainWindow", "退出登录"))
         self.alterPassword.setText(_translate("MainWindow", "修改密码"))
-
-    def addBook(self):
-        from addBook import Ui_Form
-        self.addBook = Ui_Form(self.cursor)
-        self.addBook.show()
-
-    def alterBook(self):
-        from alterBook import Ui_Form
-        self.alterBook = Ui_Form(self.cursor)
-        self.alterBook.show()
-
-    def alterUser(self, m):
-        from alterStudent import Ui_Form
-        self.alterUser = Ui_Form(self.cursor)
-        self.alterUser.show()
 
     def manageAccount(self, m):
         if m.text() == "修改资料":
@@ -130,8 +123,6 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
             self.login.show()
             self.close()
 
-
-    # 预约图书
     def reserveBook(self):
         # 打开reserveBook页面
         from reserveBook import Ui_Form
@@ -145,9 +136,8 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 
     def manage_table(self):
         from Manage import Ui_Form
-        self.manage = Ui_Form(self.cursor)
+        self.manage = Ui_Form(self.cursor, self.sid)
         self.manage.show()
-
 
 
 if __name__ == "__main__":
@@ -162,6 +152,6 @@ if __name__ == "__main__":
         charset="utf8"
     )
     cursor = db.cursor()
-    ui = Ui_MainWindow(cursor, "admin1")
+    ui = Ui_MainWindow(cursor, "student1")
     ui.show()
     sys.exit(app.exec())
