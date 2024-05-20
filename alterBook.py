@@ -35,10 +35,6 @@ class Ui_Form(QtWidgets.QWidget):
         self.BookTable.setHorizontalHeaderItem(3, item)
         item = QtWidgets.QTableWidgetItem()
         self.BookTable.setHorizontalHeaderItem(4, item)
-
-        # 表格点击事件
-        self.BookTable.clicked.connect(self.clickTable)
-
         self.groupBox = QtWidgets.QGroupBox(parent=Form)
         self.groupBox.setGeometry(QtCore.QRect(40, 20, 721, 71))
         self.groupBox.setObjectName("groupBox")
@@ -73,10 +69,6 @@ class Ui_Form(QtWidgets.QWidget):
         self.searchSure = QtWidgets.QPushButton(parent=self.groupBox)
         self.searchSure.setGeometry(QtCore.QRect(640, 20, 81, 31))
         self.searchSure.setObjectName("searchSure")
-
-        # 搜索按钮点击事件
-        self.searchSure.clicked.connect(self.selectBook)
-
         self.groupBox_2 = QtWidgets.QGroupBox(parent=Form)
         self.groupBox_2.setGeometry(QtCore.QRect(40, 330, 721, 251))
         self.groupBox_2.setObjectName("groupBox_2")
@@ -93,11 +85,6 @@ class Ui_Form(QtWidgets.QWidget):
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label_5)
         self.alterBid = QtWidgets.QLineEdit(parent=self.formLayoutWidget)
         self.alterBid.setObjectName("alterBid")
-
-        # 设置bid不可编辑
-        self.alterBid.setReadOnly(True)
-        self.alterBid.setStyleSheet("background-color: #eee;")
-
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.ItemRole.FieldRole, self.alterBid)
         self.label_6 = QtWidgets.QLabel(parent=self.formLayoutWidget)
         self.label_6.setObjectName("label_6")
@@ -132,26 +119,29 @@ class Ui_Form(QtWidgets.QWidget):
         self.alterCoverSure = QtWidgets.QPushButton(parent=self.groupBox_2)
         self.alterCoverSure.setGeometry(QtCore.QRect(350, 30, 75, 23))
         self.alterCoverSure.setObjectName("alterCoverSure")
-
-        # 更换封面按钮点击事件
-        self.alterCoverSure.clicked.connect(self.uploadImg)
-
         self.alterSure = QtWidgets.QPushButton(parent=self.groupBox_2)
         self.alterSure.setGeometry(QtCore.QRect(640, 180, 81, 31))
         self.alterSure.setObjectName("alterSure")
-
-        # 修改按钮点击事件
-        self.alterSure.clicked.connect(self.alter)
-
         self.deleteSure = QtWidgets.QPushButton(parent=self.groupBox_2)
         self.deleteSure.setGeometry(QtCore.QRect(640, 120, 81, 31))
         self.deleteSure.setObjectName("deleteSure")
 
-        # 删除按钮点击事件
-        self.deleteSure.clicked.connect(self.delete)
-
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
+
+        # 表格点击事件
+        self.BookTable.clicked.connect(self.clickTable)
+        # 搜索按钮点击事件
+        self.searchSure.clicked.connect(self.selectBook)
+        # 设置bid不可编辑
+        self.alterBid.setReadOnly(True)
+        self.alterBid.setStyleSheet("background-color: #eee;")
+        # 更换封面按钮点击事件
+        self.alterCoverSure.clicked.connect(self.uploadImg)
+        # 修改按钮点击事件
+        self.alterSure.clicked.connect(self.alter)
+        # 删除按钮点击事件
+        self.deleteSure.clicked.connect(self.delete)
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate

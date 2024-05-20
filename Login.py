@@ -50,10 +50,6 @@ class Ui_Form(QtWidgets.QWidget):
         self.LoginBtn = QtWidgets.QPushButton(parent=Form)
         self.LoginBtn.setGeometry(QtCore.QRect(240, 370, 91, 31))
         self.LoginBtn.setObjectName("LoginBtn")
-
-        # 登录按钮绑定事件
-        self.LoginBtn.clicked.connect(self.login)
-
         self.label_4 = QtWidgets.QLabel(parent=Form)
         self.label_4.setGeometry(QtCore.QRect(140, 80, 311, 81))
         self.label_4.setStyleSheet("font: 24pt \"华文行楷\";")
@@ -61,6 +57,9 @@ class Ui_Form(QtWidgets.QWidget):
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
+
+        # 登录按钮绑定事件
+        self.LoginBtn.clicked.connect(self.login)
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate

@@ -74,3 +74,33 @@ label: BEGIN
     UPDATE book SET status = 1 WHERE bid = bookId;
     COMMIT;
 END;
+
+-- 借阅书籍的存储过程
+-- DROP PROCEDURE IF EXISTS borrowBook;
+CREATE PROCEDURE IF NOT EXISTS borrowBook(IN studentId INT, IN bookId INT, IN takeDate DATE, IN returnDate DATE)
+label: BEGIN
+    START TRANSACTION;
+    -- 判断是否处于冻结状态
+    IF (SELECT status FROM student, user WHERE student.sid = studentId AND student.sid = user.uid AND user.role = 0) = 1 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = '您的账号已被冻结，无法操作！';
+        -- 回滚事务
+        ROLLBACK;
+        -- 结束存储过程
+        LEAVE label;
+    END IF;
+    -- 判断是否已经预约
+    IF (SELECT COUNT(*) FROM reserve WHERE sid = studentId AND bid = bookId) = 0 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = '您还未预约该书籍，无法借阅！';
+        -- 回滚事务
+        ROLLBACK;
+        -- 结束存储过程
+        LEAVE label;
+    END IF;
+    -- 插入借阅记录
+    INSERT INTO borrow(sid, bid, borrow_date, take_date, return_date) VALUES (studentId, bookId, CURDATE(), takeDate, returnDate);
+    -- 更新书籍状态
+    UPDATE book SET status = 2 WHERE bid = bookId;
+    -- 删除预约记录
+    DELETE FROM reserve WHERE sid = studentId AND bid = bookId;
+    COMMIT;
+END;

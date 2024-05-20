@@ -47,12 +47,11 @@ class Ui_Form(QtWidgets.QWidget):
         self.alterSure = QtWidgets.QPushButton(parent=Form)
         self.alterSure.setGeometry(QtCore.QRect(290, 220, 81, 31))
         self.alterSure.setObjectName("alterSure")
+        self.retranslateUi(Form)
+        QtCore.QMetaObject.connectSlotsByName(Form)
 
         # 确认修改按钮绑定事件
         self.alterSure.clicked.connect(self.alterPassword)
-
-        self.retranslateUi(Form)
-        QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate

@@ -24,10 +24,6 @@ class Ui_Form(QtWidgets.QWidget):
         self.StudentTable.setObjectName("StudentTable")
         self.StudentTable.setColumnCount(4)
         self.StudentTable.setRowCount(0)
-
-        # 选中行绑定事件
-        self.StudentTable.clicked.connect(self.selectStudent)
-
         item = QtWidgets.QTableWidgetItem()
         self.StudentTable.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
@@ -60,10 +56,6 @@ class Ui_Form(QtWidgets.QWidget):
         self.searchSure = QtWidgets.QPushButton(parent=self.groupBox)
         self.searchSure.setGeometry(QtCore.QRect(640, 20, 81, 31))
         self.searchSure.setObjectName("searchSure")
-
-        # 搜索按钮绑定事件
-        self.searchSure.clicked.connect(self.searchStudent)
-
         self.groupBox_2 = QtWidgets.QGroupBox(parent=Form)
         self.groupBox_2.setGeometry(QtCore.QRect(40, 330, 721, 251))
         self.groupBox_2.setObjectName("groupBox_2")
@@ -102,26 +94,26 @@ class Ui_Form(QtWidgets.QWidget):
         self.alterSure = QtWidgets.QPushButton(parent=self.groupBox_2)
         self.alterSure.setGeometry(QtCore.QRect(530, 180, 81, 31))
         self.alterSure.setObjectName("alterSure")
-
-        # 修改按钮绑定事件
-        self.alterSure.clicked.connect(self.alterStudent)
-
         self.deleteSure = QtWidgets.QPushButton(parent=self.groupBox_2)
         self.deleteSure.setGeometry(QtCore.QRect(640, 180, 81, 31))
         self.deleteSure.setObjectName("deleteSure")
-
-        # 删除按钮绑定事件
-        self.deleteSure.clicked.connect(self.deleteStudent)
-
         self.addSure = QtWidgets.QPushButton(parent=self.groupBox_2)
         self.addSure.setGeometry(QtCore.QRect(420, 180, 81, 31))
         self.addSure.setObjectName("addSure")
 
-        # 添加按钮绑定事件
-        self.addSure.clicked.connect(self.addStudent)
-
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
+
+        # 选中行绑定事件
+        self.StudentTable.clicked.connect(self.selectStudent)
+        # 搜索按钮绑定事件
+        self.searchSure.clicked.connect(self.searchStudent)
+        # 修改按钮绑定事件
+        self.alterSure.clicked.connect(self.alterStudent)
+        # 删除按钮绑定事件
+        self.deleteSure.clicked.connect(self.deleteStudent)
+        # 添加按钮绑定事件
+        self.addSure.clicked.connect(self.addStudent)
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate

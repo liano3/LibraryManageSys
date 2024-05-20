@@ -66,10 +66,6 @@ class Ui_Form(QtWidgets.QWidget):
         self.formLayout.setWidget(5, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label_6)
         self.chooseImg = QtWidgets.QPushButton(parent=self.formLayoutWidget)
         self.chooseImg.setObjectName("chooseImg")
-
-        # 选择图片按钮绑定事件
-        self.chooseImg.clicked.connect(self.uploadImg)
-
         self.formLayout.setWidget(5, QtWidgets.QFormLayout.ItemRole.FieldRole, self.chooseImg)
         self.cover = QtWidgets.QGraphicsView(parent=Form)
         self.cover.setGeometry(QtCore.QRect(340, 100, 231, 191))
@@ -77,12 +73,13 @@ class Ui_Form(QtWidgets.QWidget):
         self.addSure = QtWidgets.QPushButton(parent=Form)
         self.addSure.setGeometry(QtCore.QRect(470, 400, 101, 31))
         self.addSure.setObjectName("addSure")
-
-        # 确认添加按钮绑定事件
-        self.addSure.clicked.connect(self.add)
-
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
+
+        # 选择图片按钮绑定事件
+        self.chooseImg.clicked.connect(self.uploadImg)
+        # 确认添加按钮绑定事件
+        self.addSure.clicked.connect(self.add)
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate

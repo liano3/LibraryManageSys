@@ -55,11 +55,11 @@ class Ui_Form(QtWidgets.QWidget):
         self.alterSure.setGeometry(QtCore.QRect(300, 240, 81, 31))
         self.alterSure.setObjectName("alterSure")
 
-        # 确认修改
-        self.alterSure.clicked.connect(self.alterUserInfo)
-
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
+
+        # 确认修改
+        self.alterSure.clicked.connect(self.alterUserInfo)
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
@@ -97,10 +97,14 @@ class Ui_Form(QtWidgets.QWidget):
             return
         # 修改信息
         sql = "update user, admin set user.username = %s, aname = %s, tel = %s where user.uid = admin.aid and user.username = %s"
-        self.cursor.execute(sql, (username, name, tel, self.username))
-        self.cursor.connection.commit()
-        QtWidgets.QMessageBox.information(self, "提示", "修改成功！")
-        self.close()
+        try:
+            self.cursor.execute(sql, (username, name, tel, self.username))
+            self.cursor.connection.commit()
+            QtWidgets.QMessageBox.information(self, "提示", "修改成功！")
+            self.close()
+        except Exception as e:
+            QtWidgets.QMessageBox.warning(self, "警告", "修改失败！")
+            print(e)
 
 
 if __name__ == "__main__":

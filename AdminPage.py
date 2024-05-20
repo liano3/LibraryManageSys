@@ -33,12 +33,6 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(parent=MainWindow)
         self.statusbar.setObjectName("statusbar")
-
-        # 设置状态栏内容
-        mylabel = QtWidgets.QLabel()
-        mylabel.setText("欢迎您，管理员" + self.username + "！")
-        self.statusbar.addWidget(mylabel)
-
         MainWindow.setStatusBar(self.statusbar)
         self.menubar = QtWidgets.QMenuBar(parent=MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
@@ -72,25 +66,13 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.alterPassword.setObjectName("alterPassword")
         self.BookManage.addAction(self.addBook)
         self.BookManage.addAction(self.alterBook)
-
-        # 图书管理菜单栏绑定事件
-        self.BookManage.triggered.connect(self.manageBook)
-
         self.StudentManage.addAction(self.addStudent)
         self.StudentManage.addAction(self.alterStudent)
-
-        # 学生管理菜单栏绑定事件
-        self.StudentManage.triggered.connect(self.manageStudent)
-
         self.BadGuy.addAction(self.badReserve)
         self.BadGuy.addAction(self.badBorrow)
         self.AccountManage.addAction(self.alterProfile)
         self.AccountManage.addAction(self.alterPassword)
         self.AccountManage.addAction(self.logOut)
-
-        # 账户管理菜单栏绑定事件
-        self.AccountManage.triggered.connect(self.manageAccount)
-
         self.menubar.addAction(self.BookManage.menuAction())
         self.menubar.addAction(self.StudentManage.menuAction())
         self.menubar.addAction(self.BadGuy.menuAction())
@@ -99,6 +81,16 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+        # 设置状态栏内容
+        mylabel = QtWidgets.QLabel()
+        mylabel.setText("欢迎您，管理员" + self.username + "！")
+        self.statusbar.addWidget(mylabel)
+        # 图书管理菜单栏绑定事件
+        self.BookManage.triggered.connect(self.manageBook)
+        # 学生管理菜单栏绑定事件
+        self.StudentManage.triggered.connect(self.manageStudent)
+        # 账户管理菜单栏绑定事件
+        self.AccountManage.triggered.connect(self.manageAccount)
         # 预约图书按钮绑定事件
         self.addReserve.clicked.connect(self.reserveBook)
 
