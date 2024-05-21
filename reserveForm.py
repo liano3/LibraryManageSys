@@ -10,11 +10,12 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 
 
 class Ui_Form(QtWidgets.QWidget):
-    def __init__(self, cursor, bid):
+    def __init__(self, cursor, bid, parent):
         super().__init__()
         self.cursor = cursor
         self.bid = bid
         self.setupUi(self)
+        self.parent = parent
         self.initReserveForm()
 
     def setupUi(self, Form):
@@ -87,6 +88,7 @@ class Ui_Form(QtWidgets.QWidget):
             self.cursor.callproc("reserveBook", (sid, bid, take_date))
             QtWidgets.QMessageBox.information(self, "提示", "预约成功")
             self.close()
+            self.parent.searchBook()
         except Exception as e:
             QtWidgets.QMessageBox.warning(self, "警告", e.args[1])
             return

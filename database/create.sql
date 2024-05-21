@@ -39,13 +39,14 @@ CREATE TABLE IF NOT EXISTS reserve (
 );
 
 -- 创建borrow表
+DROP TABLE IF EXISTS borrow;
 CREATE TABLE IF NOT EXISTS borrow (
     sid INT,
     bid INT,
     borrow_date DATE NOT NULL,
     due_date DATE NOT NULL,
     return_date DATE,
-    PRIMARY KEY (sid, bid),
+    PRIMARY KEY (sid, bid, borrow_date),
     FOREIGN KEY (sid) REFERENCES student(sid),
     FOREIGN KEY (bid) REFERENCES book(bid)
 );

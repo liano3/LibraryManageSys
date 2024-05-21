@@ -186,7 +186,7 @@ class Ui_Form(QtWidgets.QWidget):
         bid = self.viewBid.text()
         # 打开预约表单
         from reserveForm import Ui_Form
-        self.reserveForm = Ui_Form(self.cursor, bid)
+        self.reserveForm = Ui_Form(self.cursor, bid, self)
         self.reserveForm.show()
 
 

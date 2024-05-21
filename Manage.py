@@ -288,7 +288,7 @@ class Ui_Form(QtWidgets.QWidget):
         row = self.BTable.currentRow()
         sid = self.BTable.item(row, 0).text()
         bid = self.BTable.item(row, 1).text()
-        sql = "update borrow set return_date = CURDATE() where sid = '{}' and bid = '{}'".format(sid, bid)
+        sql = "call returnBook({}, {})".format(sid, bid)
         try:
             self.cursor.execute(sql)
             self.cursor.connection.commit()

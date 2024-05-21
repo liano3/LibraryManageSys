@@ -200,7 +200,7 @@ class Ui_Form(QtWidgets.QWidget):
     def borrowBook(self):
         bid = self.viewBid.text()
         from borrowForm import Ui_Form
-        self.borrowForm = Ui_Form(self.cursor, bid)
+        self.borrowForm = Ui_Form(self.cursor, bid, self)
         self.borrowForm.show()
 
 

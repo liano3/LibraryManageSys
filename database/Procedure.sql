@@ -118,8 +118,8 @@ label: BEGIN
         -- 结束存储过程
         LEAVE label;
     END IF;
-    -- 删除借阅记录
-    DELETE FROM borrow WHERE sid = studentId AND bid = bookId;
+    -- 更新 return_date
+    UPDATE borrow SET return_date = CURDATE() WHERE sid = studentId AND bid = bookId;
     -- 更新书籍状态
     UPDATE book SET status = 0 WHERE bid = bookId;
     COMMIT;
@@ -145,4 +145,26 @@ label: BEGIN
     -- 解冻用户
     UPDATE user SET status = s WHERE uid = studentId and role = 0;
     COMMIT;
+END;
+
+-- 创建函数，统计本月最热门的书籍
+DROP FUNCTION IF EXISTS hotBook;
+CREATE FUNCTION IF NOT EXISTS hotBook()
+RETURNS INT
+READS SQL DATA
+BEGIN
+    DECLARE hotBookId INT;
+    SELECT bid INTO hotBookId FROM borrow WHERE MONTH(borrow_date) = MONTH(CURDATE()) GROUP BY bid ORDER BY COUNT(*) DESC LIMIT 1;
+    RETURN hotBookId;
+END;
+
+-- 创建函数，统计本月最活跃的学生
+DROP FUNCTION IF EXISTS activeStudent;
+CREATE FUNCTION IF NOT EXISTS activeStudent()
+RETURNS INT
+READS SQL DATA
+BEGIN
+    DECLARE activeStudentId INT;
+    SELECT sid INTO activeStudentId FROM borrow WHERE MONTH(borrow_date) = MONTH(CURDATE()) GROUP BY sid ORDER BY COUNT(*) DESC LIMIT 1;
+    RETURN activeStudentId;
 END;

@@ -81,6 +81,21 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.bookAlter.clicked.connect(self.alterBook)
         self.userAlter.clicked.connect(self.alterUser)
         self.AccountManage.triggered.connect(self.manageAccount)
+        # 在状态栏显示最热门书籍和最活跃用户，间距大一点
+        mylabel = QtWidgets.QLabel()
+        mylabel.setText("       ")
+        self.statusbar.addWidget(mylabel)
+        # 调用数据库函数
+        sql = "select hotBook()"
+        self.cursor.execute(sql)
+        result = self.cursor.fetchone()
+        # 查找对应书名
+        sql = "select bname from book where bid = '{}'".format(result[0])
+        self.cursor.execute(sql)
+        result = self.cursor.fetchone()
+        mylabel = QtWidgets.QLabel()
+        mylabel.setText("本月最热门书籍：" + result[0])
+        self.statusbar.addWidget(mylabel)
 
 
     def retranslateUi(self, MainWindow):
