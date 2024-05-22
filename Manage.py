@@ -288,7 +288,8 @@ class Ui_Form(QtWidgets.QWidget):
         row = self.BTable.currentRow()
         sid = self.BTable.item(row, 0).text()
         bid = self.BTable.item(row, 1).text()
-        sql = "call returnBook({}, {})".format(sid, bid)
+        borrowDate = self.BTable.item(row, 2).text()
+        sql = "update borrow set return_date = CURDATE() where sid = '{}' and bid = '{}' and borrow_date = '{}'".format(sid, bid, borrowDate)
         try:
             self.cursor.execute(sql)
             self.cursor.connection.commit()
@@ -339,6 +340,6 @@ if __name__ == "__main__":
         charset="utf8"
     )
     cursor = db.cursor()
-    ui = Ui_Form(cursor, 1)
+    ui = Ui_Form(cursor)
     ui.show()
     sys.exit(app.exec())

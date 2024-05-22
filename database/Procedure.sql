@@ -48,16 +48,33 @@ BEGIN
 END;
 
 -- 创建删除学生的触发器，删除学生时自动删除对应用户
+DROP TRIGGER IF EXISTS deleteUser;
 CREATE TRIGGER IF NOT EXISTS deleteUser
 AFTER DELETE ON student
 FOR EACH ROW
 BEGIN
-    DELETE FROM user WHERE uid = OLD.sid;
+    DELETE FROM user WHERE uid = OLD.sid and role = 0;
 END;
 
 -- 取消预约的触发器
 CREATE TRIGGER IF NOT EXISTS cancelReserve
 AFTER DELETE ON reserve
+FOR EACH ROW
+BEGIN
+    UPDATE book SET status = 0 WHERE bid = OLD.bid;
+END;
+
+-- 还书的触发器
+CREATE TRIGGER IF NOT EXISTS returnBook
+AFTER UPDATE ON borrow
+FOR EACH ROW
+BEGIN
+    UPDATE book SET status = 0 WHERE bid = OLD.bid;
+END;
+
+-- 取消借阅的触发器
+CREATE TRIGGER IF NOT EXISTS cancelBorrow
+AFTER DELETE ON borrow
 FOR EACH ROW
 BEGIN
     UPDATE book SET status = 0 WHERE bid = OLD.bid;
@@ -105,26 +122,6 @@ label: BEGIN
     COMMIT;
 END;
 
--- 还书的存储过程
-DROP PROCEDURE IF EXISTS returnBook;
-CREATE PROCEDURE IF NOT EXISTS returnBook(IN studentId INT, IN bookId INT)
-label: BEGIN
-    START TRANSACTION;
-    -- 判断是否处于冻结状态
-    IF (SELECT status FROM student, user WHERE student.sid = studentId AND student.sid = user.uid AND user.role = 0) = 1 THEN
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = '您的账号已被冻结，无法操作！';
-        -- 回滚事务
-        ROLLBACK;
-        -- 结束存储过程
-        LEAVE label;
-    END IF;
-    -- 更新 return_date
-    UPDATE borrow SET return_date = CURDATE() WHERE sid = studentId AND bid = bookId;
-    -- 更新书籍状态
-    UPDATE book SET status = 0 WHERE bid = bookId;
-    COMMIT;
-END;
-
 -- Kill
 DROP PROCEDURE IF EXISTS killUser;
 CREATE PROCEDURE IF NOT EXISTS killUser(IN studentId INT)
@@ -134,16 +131,6 @@ label: BEGIN
     DELETE FROM reserve WHERE sid = studentId;
     -- 冻结用户
     UPDATE user SET status = 1 WHERE uid = studentId and role = 0;
-    COMMIT;
-END;
-
--- Unkill
-DROP PROCEDURE IF EXISTS unkillUser;
-CREATE PROCEDURE IF NOT EXISTS unkillUser(IN studentId INT, IN s INT)
-label: BEGIN
-    START TRANSACTION;
-    -- 解冻用户
-    UPDATE user SET status = s WHERE uid = studentId and role = 0;
     COMMIT;
 END;
 

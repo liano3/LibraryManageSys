@@ -10,9 +10,10 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 
 
 class Ui_Form(QtWidgets.QWidget):
-    def __init__(self, cursor):
+    def __init__(self, cursor, sid=None):
         super().__init__()
         self.cursor = cursor
+        self.sid = sid
         self.setupUi(self)
         self.initBookTable()
 
@@ -187,7 +188,7 @@ class Ui_Form(QtWidgets.QWidget):
         bid = self.viewBid.text()
         # 打开预约表单
         from reserveForm import Ui_Form
-        self.reserveForm = Ui_Form(self.cursor, bid, self)
+        self.reserveForm = Ui_Form(bid, self)
         self.reserveForm.show()
 
 

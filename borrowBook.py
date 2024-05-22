@@ -10,9 +10,10 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 
 
 class Ui_Form(QtWidgets.QWidget):
-    def __init__(self, cursor):
+    def __init__(self, cursor, sid=None):
         super().__init__()
         self.cursor = cursor
+        self.sid = sid
         self.setupUi(self)
         self.initBookTable()
 
@@ -149,7 +150,10 @@ class Ui_Form(QtWidgets.QWidget):
 
     def initBookTable(self):
         self.BookTable.setRowCount(0)
-        self.cursor.execute("select bid, bname, author, publisher from book where status = 1")
+        if self.sid:
+            self.cursor.execute("select book.bid, bname, author, publisher from book, reserve where book.bid = reserve.bid and sid = {}".format(self.sid))
+        else:
+            self.cursor.execute("select bid, bname, author, publisher from book where status = 1")
         data = self.cursor.fetchall()
         for i in range(len(data)):
             self.BookTable.insertRow(i)
@@ -171,7 +175,10 @@ class Ui_Form(QtWidgets.QWidget):
             status = 1
         # print(bid, bname, author, status)
         self.BookTable.setRowCount(0)
-        sql = "select bid, bname, author, publisher from book where bid like '%{}%' and bname like '%{}%' and author like '%{}%' and status = {}".format(bid, bname, author, status)
+        if self.sid and status == 1:
+            sql = "select book.bid, bname, author, publisher from book, reserve where book.bid = reserve.bid and sid = {} and book.bid like '%{}%' and bname like '%{}%' and author like '%{}%' and status = {}".format(self.sid, bid, bname, author, status)
+        else:
+            sql = "select bid, bname, author, publisher from book where bid like '%{}%' and bname like '%{}%' and author like '%{}%' and status = {}".format(bid, bname, author, status)
         try:
             self.cursor.execute(sql)
         except Exception as e:
@@ -201,7 +208,7 @@ class Ui_Form(QtWidgets.QWidget):
     def borrowBook(self):
         bid = self.viewBid.text()
         from borrowForm import Ui_Form
-        self.borrowForm = Ui_Form(self.cursor, bid, self)
+        self.borrowForm = Ui_Form(bid, self)
         self.borrowForm.show()
 
 
@@ -217,6 +224,6 @@ if __name__ == "__main__":
         charset="utf8"
     )
     cursor = db.cursor()
-    ui = Ui_Form(cursor)
+    ui = Ui_Form(cursor, 1)
     ui.show()
     sys.exit(app.exec())

@@ -88,7 +88,7 @@ class Ui_Form(QtWidgets.QWidget):
             cursor.execute(sql, (username, password, role))
             result = cursor.fetchone()
             if result:
-                # QtWidgets.QMessageBox.information(None, "成功", "登录成功")
+                QtWidgets.QMessageBox.information(None, "成功", "登录成功")
                 # 如果是管理员，跳转到管理员页面，隐藏登录页面
                 if role == 1:
                     from AdminPage import Ui_MainWindow

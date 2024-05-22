@@ -237,7 +237,7 @@ class Ui_Form(QtWidgets.QWidget):
         oldStatus = self.StudentTable.item(self.StudentTable.currentRow(), 4).text()
         oldStatus = 0 if oldStatus == "正常" else 1
         if status != oldStatus:
-            sql = "call unkillUser({}, {})".format(sid, status)
+            sql = "update user set status = '{}' where uid = '{}' and role = 0".format(status, sid)
             try:
                 self.cursor.execute(sql)
             except Exception as e:

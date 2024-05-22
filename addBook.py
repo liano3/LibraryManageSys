@@ -100,6 +100,8 @@ class Ui_Form(QtWidgets.QWidget):
     def uploadImg(self):
         imgName, imgType = QtWidgets.QFileDialog.getOpenFileName(self, "选择图片", "", "Image Files(*.jpg *.png)")
         # print(imgName)
+        if not imgName:
+            return
         # 根据路径获得图片
         img = QtGui.QPixmap(imgName).scaled(self.cover.width() - 10, self.cover.height() - 10)
         # 用 QGraphicsView 显示图片

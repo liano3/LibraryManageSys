@@ -149,7 +149,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 
     def borrowBook(self):
         from borrowBook import Ui_Form
-        self.borrowBook = Ui_Form(self.cursor)
+        self.borrowBook = Ui_Form(self.cursor, self.sid)
         self.borrowBook.show()
 
     def manage_table(self):

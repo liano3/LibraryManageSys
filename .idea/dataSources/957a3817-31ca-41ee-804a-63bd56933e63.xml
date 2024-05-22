@@ -1010,7 +1010,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="293" parent="1" name="library">
-      <LastIntrospectionLocalTimestamp>2024-05-22.01:23:37</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-05-22.09:28:43</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <user id="294" parent="1" name="mysql.infoschema">
@@ -1069,348 +1069,345 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <RoutineKind>procedure</RoutineKind>
       <SourceTextLength>536</SourceTextLength>
     </routine>
-    <routine id="305" parent="293" name="returnBook">
-      <Definer>root@localhost</Definer>
-      <RoutineKind>procedure</RoutineKind>
-      <SourceTextLength>522</SourceTextLength>
-    </routine>
-    <routine id="306" parent="293" name="unkillUser">
+    <routine id="305" parent="293" name="unkillUser">
       <Definer>root@localhost</Definer>
       <RoutineKind>procedure</RoutineKind>
       <SourceTextLength>130</SourceTextLength>
     </routine>
-    <routine id="307" parent="293" name="updateStudentId">
+    <routine id="306" parent="293" name="updateStudentId">
       <Definer>root@localhost</Definer>
       <RoutineKind>procedure</RoutineKind>
       <SourceTextLength>320</SourceTextLength>
     </routine>
-    <table id="308" parent="293" name="admin">
+    <table id="307" parent="293" name="admin">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="309" parent="293" name="book">
+    <table id="308" parent="293" name="book">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="310" parent="293" name="borrow">
+    <table id="309" parent="293" name="borrow">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="311" parent="293" name="reserve">
+    <table id="310" parent="293" name="reserve">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="312" parent="293" name="student">
+    <table id="311" parent="293" name="student">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="313" parent="293" name="user">
+    <table id="312" parent="293" name="user">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <argument id="314" parent="298">
+    <argument id="313" parent="298">
       <ArgumentDirection>R</ArgumentDirection>
       <DasType>int|0s</DasType>
     </argument>
-    <argument id="315" parent="299" name="studentId">
+    <argument id="314" parent="299" name="studentId">
       <DasType>int|0s</DasType>
       <Position>1</Position>
     </argument>
-    <argument id="316" parent="299" name="bookId">
+    <argument id="315" parent="299" name="bookId">
       <DasType>int|0s</DasType>
       <Position>2</Position>
     </argument>
-    <argument id="317" parent="299" name="dueDate">
+    <argument id="316" parent="299" name="dueDate">
       <DasType>date|0s</DasType>
       <Position>3</Position>
     </argument>
-    <argument id="318" parent="300" name="bookId">
+    <argument id="317" parent="300" name="bookId">
       <DasType>int|0s</DasType>
       <Position>1</Position>
     </argument>
-    <argument id="319" parent="301" name="studentId">
+    <argument id="318" parent="301" name="studentId">
       <DasType>int|0s</DasType>
       <Position>1</Position>
     </argument>
-    <argument id="320" parent="302">
+    <argument id="319" parent="302">
       <ArgumentDirection>R</ArgumentDirection>
       <DasType>int|0s</DasType>
     </argument>
-    <argument id="321" parent="303" name="studentId">
+    <argument id="320" parent="303" name="studentId">
       <DasType>int|0s</DasType>
       <Position>1</Position>
     </argument>
-    <argument id="322" parent="304" name="studentId">
+    <argument id="321" parent="304" name="studentId">
       <DasType>int|0s</DasType>
       <Position>1</Position>
     </argument>
-    <argument id="323" parent="304" name="bookId">
+    <argument id="322" parent="304" name="bookId">
       <DasType>int|0s</DasType>
       <Position>2</Position>
     </argument>
-    <argument id="324" parent="304" name="takeDate">
+    <argument id="323" parent="304" name="takeDate">
       <DasType>date|0s</DasType>
       <Position>3</Position>
     </argument>
-    <argument id="325" parent="305" name="studentId">
+    <argument id="324" parent="305" name="studentId">
       <DasType>int|0s</DasType>
       <Position>1</Position>
     </argument>
-    <argument id="326" parent="305" name="bookId">
+    <argument id="325" parent="305" name="s">
       <DasType>int|0s</DasType>
       <Position>2</Position>
     </argument>
-    <argument id="327" parent="306" name="studentId">
+    <argument id="326" parent="306" name="oldId">
       <DasType>int|0s</DasType>
       <Position>1</Position>
     </argument>
-    <argument id="328" parent="306" name="s">
+    <argument id="327" parent="306" name="newId">
       <DasType>int|0s</DasType>
       <Position>2</Position>
     </argument>
-    <argument id="329" parent="307" name="oldId">
-      <DasType>int|0s</DasType>
-      <Position>1</Position>
-    </argument>
-    <argument id="330" parent="307" name="newId">
-      <DasType>int|0s</DasType>
-      <Position>2</Position>
-    </argument>
-    <column id="331" parent="308" name="aid">
+    <column id="328" parent="307" name="aid">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="332" parent="308" name="aname">
+    <column id="329" parent="307" name="aname">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="333" parent="308" name="tel">
+    <column id="330" parent="307" name="tel">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <index id="334" parent="308" name="PRIMARY">
+    <index id="331" parent="307" name="PRIMARY">
       <ColNames>aid</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="335" parent="308" name="PRIMARY">
+    <key id="332" parent="307" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="336" parent="309" name="bid">
+    <column id="333" parent="308" name="bid">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="337" parent="309" name="cover">
+    <column id="334" parent="308" name="cover">
       <DasType>longblob|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="338" parent="309" name="bname">
+    <column id="335" parent="308" name="bname">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="339" parent="309" name="author">
+    <column id="336" parent="308" name="author">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="340" parent="309" name="publisher">
+    <column id="337" parent="308" name="publisher">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="341" parent="309" name="status">
+    <column id="338" parent="308" name="status">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <Position>6</Position>
     </column>
-    <index id="342" parent="309" name="PRIMARY">
+    <index id="339" parent="308" name="PRIMARY">
       <ColNames>bid</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="343" parent="309" name="PRIMARY">
+    <key id="340" parent="308" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="344" parent="310" name="sid">
+    <column id="341" parent="309" name="sid">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="345" parent="310" name="bid">
+    <column id="342" parent="309" name="bid">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="346" parent="310" name="borrow_date">
+    <column id="343" parent="309" name="borrow_date">
       <DasType>date|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="347" parent="310" name="due_date">
+    <column id="344" parent="309" name="due_date">
       <DasType>date|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="348" parent="310" name="return_date">
+    <column id="345" parent="309" name="return_date">
       <DasType>date|0s</DasType>
       <Position>5</Position>
     </column>
-    <foreign-key id="349" parent="310" name="borrow_ibfk_1">
+    <foreign-key id="346" parent="309" name="borrow_ibfk_1">
       <ColNames>sid</ColNames>
       <RefColNames>sid</RefColNames>
       <RefTableName>student</RefTableName>
     </foreign-key>
-    <foreign-key id="350" parent="310" name="borrow_ibfk_2">
+    <foreign-key id="347" parent="309" name="borrow_ibfk_2">
       <ColNames>bid</ColNames>
       <RefColNames>bid</RefColNames>
       <RefTableName>book</RefTableName>
     </foreign-key>
-    <index id="351" parent="310" name="PRIMARY">
+    <index id="348" parent="309" name="PRIMARY">
       <ColNames>sid
 bid
 borrow_date</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="352" parent="310" name="bid">
+    <index id="349" parent="309" name="bid">
       <ColNames>bid</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="353" parent="310" name="PRIMARY">
+    <key id="350" parent="309" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="354" parent="311" name="sid">
+    <trigger id="351" parent="309" name="returnBook">
+      <Definer>root@localhost</Definer>
+      <Events>U</Events>
+      <SourceTextLength>61</SourceTextLength>
+    </trigger>
+    <trigger id="352" parent="309" name="cancelBorrow">
+      <Definer>root@localhost</Definer>
+      <Events>D</Events>
+      <SourceTextLength>61</SourceTextLength>
+    </trigger>
+    <column id="353" parent="310" name="sid">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="355" parent="311" name="bid">
+    <column id="354" parent="310" name="bid">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="356" parent="311" name="reserve_date">
+    <column id="355" parent="310" name="reserve_date">
       <DasType>date|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="357" parent="311" name="take_date">
+    <column id="356" parent="310" name="take_date">
       <DasType>date|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <foreign-key id="358" parent="311" name="reserve_ibfk_1">
+    <foreign-key id="357" parent="310" name="reserve_ibfk_1">
       <ColNames>sid</ColNames>
       <RefColNames>sid</RefColNames>
       <RefTableName>student</RefTableName>
     </foreign-key>
-    <foreign-key id="359" parent="311" name="reserve_ibfk_2">
+    <foreign-key id="358" parent="310" name="reserve_ibfk_2">
       <ColNames>bid</ColNames>
       <RefColNames>bid</RefColNames>
       <RefTableName>book</RefTableName>
     </foreign-key>
-    <index id="360" parent="311" name="PRIMARY">
+    <index id="359" parent="310" name="PRIMARY">
       <ColNames>sid
 bid</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="361" parent="311" name="bid">
+    <index id="360" parent="310" name="bid">
       <ColNames>bid</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="362" parent="311" name="PRIMARY">
+    <key id="361" parent="310" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <trigger id="363" parent="311" name="cancelReserve">
+    <trigger id="362" parent="310" name="cancelReserve">
       <Definer>root@localhost</Definer>
       <Events>D</Events>
       <SourceTextLength>61</SourceTextLength>
     </trigger>
-    <column id="364" parent="312" name="sid">
+    <column id="363" parent="311" name="sid">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="365" parent="312" name="sname">
+    <column id="364" parent="311" name="sname">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="366" parent="312" name="major">
+    <column id="365" parent="311" name="major">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="367" parent="312" name="tel">
+    <column id="366" parent="311" name="tel">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <index id="368" parent="312" name="PRIMARY">
+    <index id="367" parent="311" name="PRIMARY">
       <ColNames>sid</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="369" parent="312" name="PRIMARY">
+    <key id="368" parent="311" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <trigger id="370" parent="312" name="addUser">
+    <trigger id="369" parent="311" name="addUser">
       <Definer>root@localhost</Definer>
       <Events>I</Events>
       <SourceTextLength>144</SourceTextLength>
     </trigger>
-    <trigger id="371" parent="312" name="deleteUser">
+    <trigger id="370" parent="311" name="deleteUser">
       <Definer>root@localhost</Definer>
       <Events>D</Events>
-      <SourceTextLength>51</SourceTextLength>
+      <SourceTextLength>64</SourceTextLength>
     </trigger>
-    <column id="372" parent="313" name="username">
+    <column id="371" parent="312" name="username">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="373" parent="313" name="password">
+    <column id="372" parent="312" name="password">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="374" parent="313" name="uid">
+    <column id="373" parent="312" name="uid">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="375" parent="313" name="role">
+    <column id="374" parent="312" name="role">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="376" parent="313" name="status">
+    <column id="375" parent="312" name="status">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <Position>5</Position>
     </column>
-    <index id="377" parent="313" name="PRIMARY">
+    <index id="376" parent="312" name="PRIMARY">
       <ColNames>username</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="378" parent="313" name="PRIMARY">
+    <key id="377" parent="312" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>

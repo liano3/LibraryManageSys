@@ -10,11 +10,11 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 
 
 class Ui_Form(QtWidgets.QWidget):
-    def __init__(self, cursor, bid, parent):
+    def __init__(self, bid, parent):
         super().__init__()
-        self.cursor = cursor
+        self.cursor = parent.cursor
         self.bid = bid
-        self.parent = parent
+        self.sid = parent.sid
         self.setupUi(self)
         self.initBorrowForm()
 
@@ -73,6 +73,10 @@ class Ui_Form(QtWidgets.QWidget):
 
     def initBorrowForm(self):
         self.borrowBid.setText(str(self.bid))
+        if self.sid:
+            self.borrowSid.setText(str(self.sid))
+            self.borrowSid.setReadOnly(True)
+            self.borrowSid.setStyleSheet("background-color: #eee;")
 
     def borrowBook(self):
         sid = self.borrowSid.text()
@@ -90,21 +94,3 @@ class Ui_Form(QtWidgets.QWidget):
         except Exception as e:
             QtWidgets.QMessageBox.warning(self, "警告", e.args[1])
             return
-
-
-if __name__ == "__main__":
-    import sys
-    import pymysql
-
-    app = QtWidgets.QApplication(sys.argv)
-    db = pymysql.connect(
-        host="localhost",
-        user="root",
-        password="10086",
-        database="library",
-        charset="utf8"
-    )
-    cursor = db.cursor()
-    ui = Ui_Form(cursor, 1)
-    ui.show()
-    sys.exit(app.exec())

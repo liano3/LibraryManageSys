@@ -203,27 +203,14 @@ class Ui_Form(QtWidgets.QWidget):
 
     # 搜索按钮点击事件
     def selectBook(self):
-        sql = "SELECT bid, bname, author, publisher, status FROM book WHERE"
         bid = self.selectBid.text()
-        if bid:
-            sql += " bid = " + bid + " and"
         bname = self.selectBname.text()
-        if bname:
-            sql += " bname like '%" + bname + "%' and"
         author = self.selectAuthor.text()
-        if author:
-            sql += " author like '%" + author + "%' and"
-        status = self.selectBstatus.currentText()
-        if status != "全部":
-            if status == "在馆":
-                sql += " status = 0"
-            elif status == "已预约":
-                sql += " status = 1"
-            elif status == "已借出":
-                sql += " status = 2"
-        if sql[-3:] == "and":
-            sql = sql[:-3]
-        # print(sql)
+        status = self.selectBstatus.currentIndex() - 1
+        if status == -1:
+            status = ""
+        sql = "select bid, bname, author, publisher, status from book where bid like '%{}%' and bname like '%{}%' and author like '%{}%' and status like '%{}%'".format(bid, bname, author, status)
+        print(sql)
         self.cursor.execute(sql)
         self.BookTable.setRowCount(0)
         for row in self.cursor.fetchall():
@@ -239,8 +226,8 @@ class Ui_Form(QtWidgets.QWidget):
                 self.BookTable.setItem(rowPosition, 4, QtWidgets.QTableWidgetItem("已借出"))
 
     # 表格点击事件
-    def clickTable(self, index):
-        row = index.row()
+    def clickTable(self):
+        row = self.BookTable.currentRow()
         self.alterBid.setText(self.BookTable.item(row, 0).text())
         self.alterBname.setText(self.BookTable.item(row, 1).text())
         self.alterAuthor.setText(self.BookTable.item(row, 2).text())
@@ -266,6 +253,8 @@ class Ui_Form(QtWidgets.QWidget):
     # 更换封面按钮点击事件
     def uploadImg(self):
         imgName, imgType = QtWidgets.QFileDialog.getOpenFileName(self, "选择图片", "", "Image Files(*.jpg *.png)")
+        if not imgName:
+            return
         # print(imgName)
         # 根据路径获得图片
         img = QtGui.QPixmap(imgName).scaled(self.alterCover.width() - 10, self.alterCover.height() - 10)
@@ -273,8 +262,10 @@ class Ui_Form(QtWidgets.QWidget):
         scene = QtWidgets.QGraphicsScene()
         scene.addPixmap(img)
         self.alterCover.setScene(scene)
-        self.img = img
         self.imgtype = imgName.split(".")[-1]
+        # 转为二进制
+        with open(imgName, "rb") as f:
+            self.img = f.read()
 
     # 修改按钮点击事件
     def alter(self):
@@ -284,10 +275,9 @@ class Ui_Form(QtWidgets.QWidget):
         publisher = self.alterPublisher.text()
         status = self.alterBstatus.currentIndex()
         if self.img:
-            self.img.save("img/" + bid + "." + self.imgtype)
             try:
                 self.cursor.execute("UPDATE book SET bname = %s, author = %s, publisher = %s, status = %s, cover = %s WHERE bid = %s",
-                                    (bname, author, publisher, status, bid + "." + self.imgtype, bid))
+                                    (bname, author, publisher, status, self.img, bid))
                 QtWidgets.QMessageBox.information(self, "成功", "修改成功")
             except Exception as e:
                 print(e)
@@ -307,11 +297,7 @@ class Ui_Form(QtWidgets.QWidget):
     def delete(self):
         bid = self.alterBid.text()
         try:
-            self.cursor.execute("SELECT cover FROM book WHERE bid = " + bid)
-            cover = self.cursor.fetchone()[0]
             self.cursor.execute("CALL deleteBook(" + bid + ")")
-            import os
-            os.remove("img/" + cover)
             QtWidgets.QMessageBox.information(self, "成功", "删除成功")
         except Exception as e:
             print(e)

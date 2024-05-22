@@ -1,0 +1,42 @@
+卷 Liano 的文件夹 PATH 列表
+卷序列号为 8AF0-309A
+E:.
+│  addBook.py       ------- 添加书籍
+│  AdminPage.py     ------- 管理员首页
+│  alterBook.py     ------- 修改书籍信息
+│  alterPassword.py ------- 修改密码
+│  alterProfile.py  ------- 修改个人信息
+│  alterStudent.py  ------- 修改学生信息
+│  borrowBook.py    ------- 借书
+│  borrowForm.py    ------- 借书表单
+│  Login.py         ------- 登录
+│  main.py          ------- 程序入口
+│  Manage.py        ------- 管理页面
+│  reserveBook.py   ------- 预约书籍
+│  reserveForm.py   ------- 预约表单
+│  StudentPage.py   ------- 学生首页
+│  tree.txt         ------- 目录树
+│
+├─.idea             ------- 项目控制信息，省略
+├─.venv             ------- 虚拟环境，省略
+├─database
+│      create.sql   ------- 创建数据库
+│      insert_testcase.sql  ------- 插入测试数据
+│      Procedure.sql    ------- 存储过程、触发器、函数、事务
+│
+├─view              ------- ui设计文件
+│      addBook.ui
+│      AdminPage.ui
+│      alterBook.ui
+│      alterPassword.ui
+│      alterProfile.ui
+│      alterStudent.ui
+│      borrowBook.ui
+│      borrowForm.ui
+│      Login.ui
+│      Manage.ui
+│      reserveBook.ui
+│      reserveForm.ui
+│      StudentPage.ui
+│
+└─__pycache__       ------- 缓存文件，省略
