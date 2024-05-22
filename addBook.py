@@ -106,8 +106,10 @@ class Ui_Form(QtWidgets.QWidget):
         scene = QtWidgets.QGraphicsScene()
         scene.addPixmap(img)
         self.cover.setScene(scene)
-        self.img = img
         self.imgtype = imgName.split(".")[-1]
+        # 转为二进制
+        with open(imgName, "rb") as f:
+            self.img = f.read()
 
     # 添加图书
     def add(self):
@@ -125,14 +127,10 @@ class Ui_Form(QtWidgets.QWidget):
         else:
             status = 2
 
-        # 保存图片到 img 目录下
-        imgName = bid + "." + self.imgtype
-        self.img.save("img/" + imgName)
-
         # print(bid, bname, author, publisher, status)
         sql = "insert into book(bid, cover, bname, author, publisher, status) values(%s, %s, %s, %s, %s, %s)"
         try:
-            self.cursor.execute(sql, (bid, imgName, bname, author, publisher, status))
+            self.cursor.execute(sql, (bid, self.img, bname, author, publisher, status))
             self.cursor.connection.commit()
             QtWidgets.QMessageBox.information(self, "提示", "添加成功！")
         except Exception as e:

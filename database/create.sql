@@ -1,11 +1,12 @@
 -- 创建数据库 Library
+-- DROP DATABASE IF EXISTS Library;
 CREATE DATABASE IF NOT EXISTS Library;
 USE Library;
 
 -- 创建book表
 CREATE TABLE IF NOT EXISTS book (
     bid INT PRIMARY KEY,
-    cover VARCHAR(50),
+    cover LONGBLOB, -- 二进制存放图片
     bname VARCHAR(50) NOT NULL,
     author VARCHAR(50) NOT NULL,
     publisher VARCHAR(50) NOT NULL,

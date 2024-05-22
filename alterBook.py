@@ -255,7 +255,10 @@ class Ui_Form(QtWidgets.QWidget):
         # 显示封面
         self.cursor.execute("SELECT cover FROM book WHERE bid = " + self.alterBid.text())
         cover = self.cursor.fetchone()[0]
-        img = QtGui.QPixmap("E:/PyCharmProjects/LibraryManageSys/img/" + cover).scaled(self.alterCover.width() - 10, self.alterCover.height() - 10)
+        # print(cover)
+        img = QtGui.QImage.fromData(cover)
+        # print(img)
+        img = QtGui.QPixmap.fromImage(img).scaled(self.alterCover.width() - 10, self.alterCover.height() - 10)
         scene = QtWidgets.QGraphicsScene()
         scene.addPixmap(img)
         self.alterCover.setScene(scene)

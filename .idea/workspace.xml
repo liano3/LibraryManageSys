@@ -4,19 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea93ebc3-d94a-42fe-89c1-ff92bbedfbe9" name="Changes" comment="初步完成所有预期功能">
+    <list default="true" id="ea93ebc3-d94a-42fe-89c1-ff92bbedfbe9" name="Changes" comment="fix bug; 添加自定义函数">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/957a3817-31ca-41ee-804a-63bd56933e63.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/957a3817-31ca-41ee-804a-63bd56933e63.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/957a3817-31ca-41ee-804a-63bd56933e63/storage_v2/_src_/schema/library.uyToCQ.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/957a3817-31ca-41ee-804a-63bd56933e63/storage_v2/_src_/schema/library.uyToCQ.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AdminPage.py" beforeDir="false" afterPath="$PROJECT_DIR$/AdminPage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/Manage.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/StudentPage.py" beforeDir="false" afterPath="$PROJECT_DIR$/StudentPage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addBook.py" beforeDir="false" afterPath="$PROJECT_DIR$/addBook.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alterBook.py" beforeDir="false" afterPath="$PROJECT_DIR$/alterBook.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/borrowBook.py" beforeDir="false" afterPath="$PROJECT_DIR$/borrowBook.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/borrowForm.py" beforeDir="false" afterPath="$PROJECT_DIR$/borrowForm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/Procedure.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/Procedure.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/create.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/create.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/insert_testcase.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/insert_testcase.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/cover2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/cover3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/cover4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/cover5.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/reserveBook.py" beforeDir="false" afterPath="$PROJECT_DIR$/reserveBook.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reserveForm.py" beforeDir="false" afterPath="$PROJECT_DIR$/reserveForm.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,59 +58,60 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Database Script.Procedure.sql.executor": "Run",
-    "Database Script.create.sql.executor": "Run",
-    "Database Script.insert_testcase.sql.executor": "Run",
-    "Python.AdminPage.executor": "Run",
-    "Python.AdminReserve.executor": "Run",
-    "Python.Login.executor": "Run",
-    "Python.Manage.executor": "Run",
-    "Python.StudentPage.executor": "Run",
-    "Python.addBook.executor": "Run",
-    "Python.alterBook.executor": "Run",
-    "Python.alterPassword.executor": "Run",
-    "Python.alterProfile.executor": "Run",
-    "Python.alterStudent.executor": "Run",
-    "Python.borrowBook.executor": "Run",
-    "Python.borrowForm.executor": "Run",
-    "Python.count.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.reserveBook.executor": "Run",
-    "Python.reserveForm.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "E:/PyCharmProjects/LibraryManageSys/.venv/Scripts/pyuic6.exe",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true",
-    "数据库脚本.Procedure.sql.executor": "Run",
-    "数据库脚本.create.sql.executor": "Run"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Database Script.Procedure.sql.executor&quot;: &quot;Run&quot;,
+    &quot;Database Script.create.sql.executor&quot;: &quot;Run&quot;,
+    &quot;Database Script.insert_testcase.sql.executor&quot;: &quot;Run&quot;,
+    &quot;Python.AdminPage.executor&quot;: &quot;Run&quot;,
+    &quot;Python.AdminReserve.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Login.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Manage.executor&quot;: &quot;Run&quot;,
+    &quot;Python.StudentPage.executor&quot;: &quot;Run&quot;,
+    &quot;Python.addBook.executor&quot;: &quot;Run&quot;,
+    &quot;Python.alterBook.executor&quot;: &quot;Run&quot;,
+    &quot;Python.alterPassword.executor&quot;: &quot;Run&quot;,
+    &quot;Python.alterProfile.executor&quot;: &quot;Run&quot;,
+    &quot;Python.alterStudent.executor&quot;: &quot;Run&quot;,
+    &quot;Python.borrowBook.executor&quot;: &quot;Run&quot;,
+    &quot;Python.borrowForm.executor&quot;: &quot;Run&quot;,
+    &quot;Python.count.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.reserveBook.executor&quot;: &quot;Run&quot;,
+    &quot;Python.reserveForm.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/PyCharmProjects/LibraryManageSys/.venv/Scripts/pyuic6.exe&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
+    &quot;数据库脚本.Procedure.sql.executor&quot;: &quot;Run&quot;,
+    &quot;数据库脚本.create.sql.executor&quot;: &quot;Run&quot;,
+    &quot;数据库脚本.insert_testcase.sql.executor&quot;: &quot;Run&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ],
-    "RunConfigurationTargetLRU": [
-      "957a3817-31ca-41ee-804a-63bd56933e63/schema/\"library\"",
-      "957a3817-31ca-41ee-804a-63bd56933e63"
+    &quot;RunConfigurationTargetLRU&quot;: [
+      &quot;957a3817-31ca-41ee-804a-63bd56933e63/schema/\&quot;library\&quot;&quot;,
+      &quot;957a3817-31ca-41ee-804a-63bd56933e63&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\PyCharmProjects\LibraryManageSys" />
       <recent name="E:\PyCharmProjects\LibraryManageSys\view" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.main">
     <configuration name="Procedure.sql" type="DatabaseScript" editBeforeRun="true" nameIsGenerated="true">
       <script-file value="$PROJECT_DIR$/database/Procedure.sql" />
       <script-mode>FILE</script-mode>
@@ -184,7 +191,10 @@
       <workItem from="1716265544934" duration="15000" />
       <workItem from="1716266150605" duration="410000" />
       <workItem from="1716270735105" duration="760000" />
-      <workItem from="1716279488848" duration="6713000" />
+      <workItem from="1716279488848" duration="6839000" />
+      <workItem from="1716340517410" duration="137000" />
+      <workItem from="1716340663664" duration="8684000" />
+      <workItem from="1716351863313" duration="1017000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -258,7 +268,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716197236069</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="fix bug; 添加自定义函数">
+      <option name="closed" value="true" />
+      <created>1716287281711</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1716287281711</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -272,24 +290,25 @@
     <MESSAGE value="book reserve" />
     <MESSAGE value="代码规范化" />
     <MESSAGE value="初步完成所有预期功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="初步完成所有预期功能" />
+    <MESSAGE value="fix bug; 添加自定义函数" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix bug; 添加自定义函数" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/LibraryManageSys$reserveBook.coverage" NAME="reserveBook 覆盖结果" MODIFIED="1716270928613" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/LibraryManageSys$reserveBook.coverage" NAME="reserveBook 覆盖结果" MODIFIED="1716345013825" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/LibraryManageSys$count.coverage" NAME="count 覆盖结果" MODIFIED="1716284345899" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/LibraryManageSys$AdminPage.coverage" NAME="AdminPage 覆盖结果" MODIFIED="1716287107870" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/LibraryManageSys$addBook.coverage" NAME="addBook Coverage Results" MODIFIED="1716169918572" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/LibraryManageSys$AdminPage.coverage" NAME="AdminPage 覆盖结果" MODIFIED="1716344858505" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/LibraryManageSys$addBook.coverage" NAME="addBook 覆盖结果" MODIFIED="1716343398610" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/LibraryManageSys$reserveForm.coverage" NAME="reserveForm Coverage Results" MODIFIED="1716130828041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/LibraryManageSys$borrowForm.coverage" NAME="borrowForm Coverage Results" MODIFIED="1716174053960" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/LibraryManageSys$alterStudent.coverage" NAME="alterStudent Coverage Results" MODIFIED="1716195172643" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/LibraryManageSys$alterPassword.coverage" NAME="alterPassword Coverage Results" MODIFIED="1716170410082" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/LibraryManageSys$StudentPage.coverage" NAME="StudentPage 覆盖结果" MODIFIED="1716286856409" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/LibraryManageSys$StudentPage.coverage" NAME="StudentPage 覆盖结果" MODIFIED="1716341134713" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/LibraryManageSys$AdminReserve.coverage" NAME="AdminReserve Coverage Results" MODIFIED="1716129444777" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/LibraryManageSys$alterProfile.coverage" NAME="alterProfile Coverage Results" MODIFIED="1716170432721" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/LibraryManageSys$Manage.coverage" NAME="Manage 覆盖结果" MODIFIED="1716287025494" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/LibraryManageSys$alterBook.coverage" NAME="alterBook Coverage Results" MODIFIED="1716187628128" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/LibraryManageSys$Login.coverage" NAME="Login Coverage Results" MODIFIED="1716196906644" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/LibraryManageSys$main.coverage" NAME="main 覆盖结果" MODIFIED="1716286872371" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/LibraryManageSys$borrowBook.coverage" NAME="borrowBook 覆盖结果" MODIFIED="1716286277329" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/LibraryManageSys$Manage.coverage" NAME="Manage 覆盖结果" MODIFIED="1716287177460" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/LibraryManageSys$alterBook.coverage" NAME="alterBook 覆盖结果" MODIFIED="1716344654072" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/LibraryManageSys$Login.coverage" NAME="Login 覆盖结果" MODIFIED="1716344792337" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/LibraryManageSys$main.coverage" NAME="main 覆盖结果" MODIFIED="1716345262630" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/LibraryManageSys$borrowBook.coverage" NAME="borrowBook 覆盖结果" MODIFIED="1716345041596" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

@@ -99,7 +99,10 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.cursor.execute(sql)
         result = self.cursor.fetchone()
         mylabel = QtWidgets.QLabel()
-        mylabel.setText("本月最热门书籍：" + result[0])
+        if result is None:
+            mylabel.setText("本月最热门书籍：暂无")
+        else:
+            mylabel.setText("本月最热门书籍：" + result[0])
         self.statusbar.addWidget(mylabel)
 
     def retranslateUi(self, MainWindow):
