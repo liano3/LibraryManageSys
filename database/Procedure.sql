@@ -1,6 +1,7 @@
 -- 存储过程设计
 USE library;
 -- 删除书籍
+DROP PROCEDURE IF EXISTS deleteBook;
 CREATE PROCEDURE IF NOT EXISTS deleteBook(IN bookId INT)
 BEGIN
     START TRANSACTION;
@@ -13,6 +14,7 @@ BEGIN
 END;
 
 -- 更新学生学号
+DROP PROCEDURE IF EXISTS updateStudentId;
 CREATE PROCEDURE IF NOT EXISTS updateStudentId(IN oldId INT, IN newId INT)
 BEGIN
     START TRANSACTION;
@@ -26,6 +28,7 @@ BEGIN
 END;
 
 -- 删除学生
+DROP PROCEDURE IF EXISTS deleteStudent;
 CREATE PROCEDURE IF NOT EXISTS deleteStudent(IN studentId INT)
 BEGIN
     START TRANSACTION;
@@ -39,6 +42,7 @@ BEGIN
 END;
 
 -- 创建添加学生的触发器，添加学生时自动添加对应用户
+DROP TRIGGER IF EXISTS addUser;
 CREATE TRIGGER IF NOT EXISTS addUser
 AFTER INSERT ON student
 FOR EACH ROW
@@ -57,6 +61,7 @@ BEGIN
 END;
 
 -- 取消预约的触发器
+DROP TRIGGER IF EXISTS cancelReserve;
 CREATE TRIGGER IF NOT EXISTS cancelReserve
 AFTER DELETE ON reserve
 FOR EACH ROW
@@ -65,14 +70,19 @@ BEGIN
 END;
 
 -- 还书的触发器
+DROP TRIGGER IF EXISTS returnBook;
 CREATE TRIGGER IF NOT EXISTS returnBook
 AFTER UPDATE ON borrow
 FOR EACH ROW
 BEGIN
-    UPDATE book SET status = 0 WHERE bid = OLD.bid;
+    -- 区分续借和还书
+    if NEW.return_date is not null THEN
+        UPDATE book SET status = 0 WHERE bid = NEW.bid;
+    END IF;
 END;
 
 -- 取消借阅的触发器
+DROP TRIGGER IF EXISTS cancelBorrow;
 CREATE TRIGGER IF NOT EXISTS cancelBorrow
 AFTER DELETE ON borrow
 FOR EACH ROW
@@ -81,7 +91,7 @@ BEGIN
 END;
 
 -- 预约书籍的存储过程
--- DROP PROCEDURE IF EXISTS reserveBook;
+DROP PROCEDURE IF EXISTS reserveBook;
 CREATE PROCEDURE IF NOT EXISTS reserveBook(IN studentId INT, IN bookId INT, IN takeDate DATE)
 label: BEGIN
     START TRANSACTION;
@@ -117,8 +127,6 @@ label: BEGIN
     INSERT INTO borrow(sid, bid, borrow_date, due_date) VALUES (studentId, bookId, CURDATE(), dueDate);
     -- 更新书籍状态
     UPDATE book SET status = 2 WHERE bid = bookId;
-    -- 删除预约记录
-    DELETE FROM reserve WHERE sid = studentId AND bid = bookId;
     COMMIT;
 END;
 
@@ -127,8 +135,8 @@ DROP PROCEDURE IF EXISTS killUser;
 CREATE PROCEDURE IF NOT EXISTS killUser(IN studentId INT)
 label: BEGIN
     START TRANSACTION;
-    -- 删除预约记录
-    DELETE FROM reserve WHERE sid = studentId;
+    -- 设置预约记录过期时间
+    UPDATE reserve SET pass_date = CURDATE() WHERE sid = studentId AND take_date < CURDATE() AND pass_date IS NULL;
     -- 冻结用户
     UPDATE user SET status = 1 WHERE uid = studentId and role = 0;
     COMMIT;

@@ -151,7 +151,7 @@ class Ui_Form(QtWidgets.QWidget):
     def initBookTable(self):
         self.BookTable.setRowCount(0)
         if self.sid:
-            self.cursor.execute("select book.bid, bname, author, publisher from book, reserve where book.bid = reserve.bid and sid = {}".format(self.sid))
+            self.cursor.execute("select book.bid, bname, author, publisher from book, reserve where book.bid = reserve.bid and sid = {} and pass_date is null".format(self.sid))
         else:
             self.cursor.execute("select bid, bname, author, publisher from book where status = 1")
         data = self.cursor.fetchall()
@@ -176,10 +176,11 @@ class Ui_Form(QtWidgets.QWidget):
         # print(bid, bname, author, status)
         self.BookTable.setRowCount(0)
         if self.sid and status == 1:
-            sql = "select book.bid, bname, author, publisher from book, reserve where book.bid = reserve.bid and sid = {} and book.bid like '%{}%' and bname like '%{}%' and author like '%{}%' and status = {}".format(self.sid, bid, bname, author, status)
+            sql = "select book.bid, bname, author, publisher from book, reserve where book.bid = reserve.bid and sid = {} and pass_date is null and book.bid like '%{}%' and bname like '%{}%' and author like '%{}%' and status = {}".format(self.sid, bid, bname, author, status)
         else:
             sql = "select bid, bname, author, publisher from book where bid like '%{}%' and bname like '%{}%' and author like '%{}%' and status = {}".format(bid, bname, author, status)
         try:
+            # print(sql)
             self.cursor.execute(sql)
         except Exception as e:
             print(e)

@@ -29,12 +29,14 @@ CREATE TABLE IF NOT EXISTS admin (
 );
 
 -- 创建reserve表
+DROP TABLE IF EXISTS reserve;
 CREATE TABLE IF NOT EXISTS reserve (
     sid INT,
     bid INT,
     reserve_date DATE NOT NULL,
     take_date DATE NOT NULL,
-    PRIMARY KEY (sid, bid),
+    pass_date DATE, -- 过期时间（被冻结或者已借阅）
+    PRIMARY KEY (sid, bid, reserve_date),
     FOREIGN KEY (sid) REFERENCES student(sid),
     FOREIGN KEY (bid) REFERENCES book(bid)
 );

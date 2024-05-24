@@ -15,6 +15,7 @@ class Ui_Form(QtWidgets.QWidget):
         self.cursor = parent.cursor
         self.bid = bid
         self.sid = parent.sid
+        self.parent = parent
         self.setupUi(self)
         self.initBorrowForm()
 

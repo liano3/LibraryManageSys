@@ -50,7 +50,7 @@ class Ui_Form(QtWidgets.QWidget):
         self.RTable = QtWidgets.QTableWidget(parent=self.groupBox)
         self.RTable.setGeometry(QtCore.QRect(20, 70, 701, 211))
         self.RTable.setObjectName("RTable")
-        self.RTable.setColumnCount(4)
+        self.RTable.setColumnCount(5)
         self.RTable.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         self.RTable.setHorizontalHeaderItem(0, item)
@@ -60,6 +60,8 @@ class Ui_Form(QtWidgets.QWidget):
         self.RTable.setHorizontalHeaderItem(2, item)
         item = QtWidgets.QTableWidgetItem()
         self.RTable.setHorizontalHeaderItem(3, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.RTable.setHorizontalHeaderItem(4, item)
         self.Rcancel = QtWidgets.QPushButton(parent=self.groupBox)
         self.Rcancel.setGeometry(QtCore.QRect(640, 290, 81, 31))
         self.Rcancel.setObjectName("Rcancel")
@@ -168,6 +170,8 @@ class Ui_Form(QtWidgets.QWidget):
         item.setText(_translate("Form", "预约日期"))
         item = self.RTable.horizontalHeaderItem(3)
         item.setText(_translate("Form", "取书日期"))
+        item = self.RTable.horizontalHeaderItem(4)
+        item.setText(_translate("Form", "过期日期"))
         self.Rcancel.setText(_translate("Form", "取消预约"))
         self.groupBox_2.setTitle(_translate("Form", "借阅管理"))
         self.label_4.setText(_translate("Form", "学   号："))
@@ -198,6 +202,8 @@ class Ui_Form(QtWidgets.QWidget):
         sql = "select * from reserve"
         if self.sid:
             sql += " where sid = '{}'".format(self.sid)
+        # 按照预约日期降序
+        sql += " order by reserve_date desc"
         self.cursor.execute(sql)
         result = self.cursor.fetchall()
         for i in range(len(result)):
@@ -207,6 +213,7 @@ class Ui_Form(QtWidgets.QWidget):
         sql = "select * from borrow"
         if self.sid:
             sql += " where sid = '{}'".format(self.sid)
+        sql += " order by borrow_date desc"
         self.cursor.execute(sql)
         result = self.cursor.fetchall()
         for i in range(len(result)):
@@ -221,9 +228,10 @@ class Ui_Form(QtWidgets.QWidget):
         if status == "全部":
             sql = "select * from reserve where sid like '%{}%' and bid like '%{}%'".format(sid, bid)
         elif status == "正常":
-            sql = "select * from reserve where sid like '%{}%' and bid like '%{}%' and take_date >= CURDATE()".format(sid, bid)
+            sql = "select * from reserve where sid like '%{}%' and bid like '%{}%' and (take_date > CURDATE() or take_date > pass_date)".format(sid, bid)
         elif status == "违期":
-            sql = "select * from reserve where sid like '%{}%' and bid like '%{}%' and take_date < CURDATE()".format(sid, bid)
+            sql = "select * from reserve where sid like '%{}%' and bid like '%{}%' and (take_date < CURDATE() and (pass_date is NULL or take_date < pass_date))".format(sid, bid)
+        sql += " order by reserve_date desc"
         try:
             self.cursor.execute(sql)
         except Exception as e:
@@ -240,7 +248,14 @@ class Ui_Form(QtWidgets.QWidget):
         row = self.RTable.currentRow()
         sid = self.RTable.item(row, 0).text()
         bid = self.RTable.item(row, 1).text()
-        sql = "delete from reserve where sid = '{}' and bid = '{}'".format(sid, bid)
+        reserveDate = self.RTable.item(row, 2).text()
+        passDate = self.RTable.item(row, 4).text()
+        # 过期的预约不可取消
+        print(passDate)
+        if passDate != 'None':
+            QtWidgets.QMessageBox.warning(self, "警告", "预约已过期，不可取消")
+            return
+        sql = "delete from reserve where sid = '{}' and bid = '{}' and reserve_date = '{}'".format(sid, bid, reserveDate)
         try:
             self.cursor.execute(sql)
             self.cursor.connection.commit()
@@ -255,9 +270,9 @@ class Ui_Form(QtWidgets.QWidget):
         if status == "全部":
             sql = "select * from borrow where sid like '%{}%' and bid like '%{}%'".format(sid, bid)
         elif status == "正常":
-            sql = "select * from borrow where sid like '%{}%' and bid like '%{}%' and due_date >= CURDATE()".format(sid, bid)
+            sql = "select * from borrow where sid like '%{}%' and bid like '%{}%' and due_date >= return_date".format(sid, bid)
         elif status == "违期":
-            sql = "select * from borrow where sid like '%{}%' and bid like '%{}%' and due_date < CURDATE() and return_date is NULL".format(sid, bid)
+            sql = "select * from borrow where sid like '%{}%' and bid like '%{}%' and due_date < return_date".format(sid, bid)
         try:
             self.cursor.execute(sql)
         except Exception as e:
@@ -275,6 +290,10 @@ class Ui_Form(QtWidgets.QWidget):
         sid = self.BTable.item(row, 0).text()
         bid = self.BTable.item(row, 1).text()
         # 默认续借7天
+        # 已经还书的书不可续借
+        if self.BTable.item(row, 4).text() != 'None':
+            QtWidgets.QMessageBox.warning(self, "警告", "已经还书，不可续借")
+            return
         sql = "update borrow set due_date = due_date + 7 where sid = '{}' and bid = '{}'".format(sid, bid)
         try:
             self.cursor.execute(sql)
@@ -289,6 +308,10 @@ class Ui_Form(QtWidgets.QWidget):
         sid = self.BTable.item(row, 0).text()
         bid = self.BTable.item(row, 1).text()
         borrowDate = self.BTable.item(row, 2).text()
+        # 已经还书的书不可再次还书
+        if self.BTable.item(row, 4).text() != 'None':
+            QtWidgets.QMessageBox.warning(self, "警告", "已经还书，不可再次还书")
+            return
         sql = "update borrow set return_date = CURDATE() where sid = '{}' and bid = '{}' and borrow_date = '{}'".format(sid, bid, borrowDate)
         try:
             self.cursor.execute(sql)
@@ -302,7 +325,12 @@ class Ui_Form(QtWidgets.QWidget):
         row = self.BTable.currentRow()
         sid = self.BTable.item(row, 0).text()
         bid = self.BTable.item(row, 1).text()
-        sql = "delete from borrow where sid = '{}' and bid = '{}'".format(sid, bid)
+        borrowDate = self.BTable.item(row, 2).text()
+        # 已经还书的书不可取消借阅
+        if self.BTable.item(row, 4).text() != 'None':
+            QtWidgets.QMessageBox.warning(self, "警告", "已经还书，不可取消借阅")
+            return
+        sql = "delete from borrow where sid = '{}' and bid = '{}' and borrow_date = '{}'".format(sid, bid, borrowDate)
         try:
             self.cursor.execute(sql)
             self.cursor.connection.commit()
@@ -312,7 +340,7 @@ class Ui_Form(QtWidgets.QWidget):
 
     # 批处理违期，调用存储过程Kill
     def Kill(self):
-        sql = "select sid from reserve where take_date < CURDATE() \
+        sql = "select sid from reserve where take_date < CURDATE() and pass_date is NULL \
             union select sid from borrow where due_date < CURDATE() and return_date is NULL"
         self.cursor.execute(sql)
         result = self.cursor.fetchall()

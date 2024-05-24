@@ -1010,7 +1010,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="293" parent="1" name="library">
-      <LastIntrospectionLocalTimestamp>2024-05-22.09:28:43</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-05-24.13:41:50</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <user id="294" parent="1" name="mysql.infoschema">
@@ -1041,7 +1041,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     <routine id="299" parent="293" name="borrowBook">
       <Definer>root@localhost</Definer>
       <RoutineKind>procedure</RoutineKind>
-      <SourceTextLength>610</SourceTextLength>
+      <SourceTextLength>532</SourceTextLength>
     </routine>
     <routine id="300" parent="293" name="deleteBook">
       <Definer>root@localhost</Definer>
@@ -1062,7 +1062,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     <routine id="303" parent="293" name="killUser">
       <Definer>root@localhost</Definer>
       <RoutineKind>procedure</RoutineKind>
-      <SourceTextLength>191</SourceTextLength>
+      <SourceTextLength>264</SourceTextLength>
     </routine>
     <routine id="304" parent="293" name="reserveBook">
       <Definer>root@localhost</Definer>
@@ -1280,7 +1280,7 @@ borrow_date</ColNames>
     <trigger id="351" parent="309" name="returnBook">
       <Definer>root@localhost</Definer>
       <Events>U</Events>
-      <SourceTextLength>61</SourceTextLength>
+      <SourceTextLength>132</SourceTextLength>
     </trigger>
     <trigger id="352" parent="309" name="cancelBorrow">
       <Definer>root@localhost</Definer>
@@ -1307,107 +1307,112 @@ borrow_date</ColNames>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <foreign-key id="357" parent="310" name="reserve_ibfk_1">
+    <column id="357" parent="310" name="pass_date">
+      <DasType>date|0s</DasType>
+      <Position>5</Position>
+    </column>
+    <foreign-key id="358" parent="310" name="reserve_ibfk_1">
       <ColNames>sid</ColNames>
       <RefColNames>sid</RefColNames>
       <RefTableName>student</RefTableName>
     </foreign-key>
-    <foreign-key id="358" parent="310" name="reserve_ibfk_2">
+    <foreign-key id="359" parent="310" name="reserve_ibfk_2">
       <ColNames>bid</ColNames>
       <RefColNames>bid</RefColNames>
       <RefTableName>book</RefTableName>
     </foreign-key>
-    <index id="359" parent="310" name="PRIMARY">
+    <index id="360" parent="310" name="PRIMARY">
       <ColNames>sid
-bid</ColNames>
+bid
+reserve_date</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="360" parent="310" name="bid">
+    <index id="361" parent="310" name="bid">
       <ColNames>bid</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="361" parent="310" name="PRIMARY">
+    <key id="362" parent="310" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <trigger id="362" parent="310" name="cancelReserve">
+    <trigger id="363" parent="310" name="cancelReserve">
       <Definer>root@localhost</Definer>
       <Events>D</Events>
       <SourceTextLength>61</SourceTextLength>
     </trigger>
-    <column id="363" parent="311" name="sid">
+    <column id="364" parent="311" name="sid">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="364" parent="311" name="sname">
+    <column id="365" parent="311" name="sname">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="365" parent="311" name="major">
+    <column id="366" parent="311" name="major">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="366" parent="311" name="tel">
+    <column id="367" parent="311" name="tel">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <index id="367" parent="311" name="PRIMARY">
+    <index id="368" parent="311" name="PRIMARY">
       <ColNames>sid</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="368" parent="311" name="PRIMARY">
+    <key id="369" parent="311" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <trigger id="369" parent="311" name="addUser">
+    <trigger id="370" parent="311" name="addUser">
       <Definer>root@localhost</Definer>
       <Events>I</Events>
       <SourceTextLength>144</SourceTextLength>
     </trigger>
-    <trigger id="370" parent="311" name="deleteUser">
+    <trigger id="371" parent="311" name="deleteUser">
       <Definer>root@localhost</Definer>
       <Events>D</Events>
       <SourceTextLength>64</SourceTextLength>
     </trigger>
-    <column id="371" parent="312" name="username">
+    <column id="372" parent="312" name="username">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="372" parent="312" name="password">
+    <column id="373" parent="312" name="password">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="373" parent="312" name="uid">
+    <column id="374" parent="312" name="uid">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="374" parent="312" name="role">
+    <column id="375" parent="312" name="role">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="375" parent="312" name="status">
+    <column id="376" parent="312" name="status">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <Position>5</Position>
     </column>
-    <index id="376" parent="312" name="PRIMARY">
+    <index id="377" parent="312" name="PRIMARY">
       <ColNames>username</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="377" parent="312" name="PRIMARY">
+    <key id="378" parent="312" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>

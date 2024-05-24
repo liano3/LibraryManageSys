@@ -204,6 +204,6 @@ if __name__ == "__main__":
         charset="utf8"
     )
     cursor = db.cursor()
-    ui = Ui_Form(cursor)
+    ui = Ui_Form(cursor, 1)
     ui.show()
     sys.exit(app.exec())
