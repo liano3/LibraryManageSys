@@ -69,6 +69,18 @@ BEGIN
     UPDATE book SET status = 0 WHERE bid = OLD.bid;
 END;
 
+-- 预约过期的触发器
+DROP TRIGGER IF EXISTS passReserve;
+CREATE TRIGGER IF NOT EXISTS passReserve
+AFTER UPDATE ON reserve
+FOR EACH ROW
+BEGIN
+    -- 判断是否过期
+    if NEW.take_date < CURDATE() THEN
+        UPDATE book SET status = 0 WHERE bid = NEW.bid;
+    END IF;
+END;
+
 -- 还书的触发器
 DROP TRIGGER IF EXISTS returnBook;
 CREATE TRIGGER IF NOT EXISTS returnBook
@@ -125,6 +137,8 @@ label: BEGIN
     END IF;
     -- 插入借阅记录
     INSERT INTO borrow(sid, bid, borrow_date, due_date) VALUES (studentId, bookId, CURDATE(), dueDate);
+    -- 更新预约记录
+    UPDATE reserve SET pass_date = CURDATE() WHERE sid = studentId AND bid = bookId AND pass_date IS NULL;
     -- 更新书籍状态
     UPDATE book SET status = 2 WHERE bid = bookId;
     COMMIT;

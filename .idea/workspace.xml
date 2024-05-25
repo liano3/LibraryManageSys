@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea93ebc3-d94a-42fe-89c1-ff92bbedfbe9" name="Changes" comment="add：实验报告;&#10;大功告成！">
+    <list default="true" id="ea93ebc3-d94a-42fe-89c1-ff92bbedfbe9" name="Changes" comment="fix：实验报告修缮">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/957a3817-31ca-41ee-804a-63bd56933e63.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/957a3817-31ca-41ee-804a-63bd56933e63.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/957a3817-31ca-41ee-804a-63bd56933e63/storage_v2/_src_/schema/library.uyToCQ.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/957a3817-31ca-41ee-804a-63bd56933e63/storage_v2/_src_/schema/library.uyToCQ.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/Manage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/borrowBook.py" beforeDir="false" afterPath="$PROJECT_DIR$/borrowBook.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/borrowForm.py" beforeDir="false" afterPath="$PROJECT_DIR$/borrowForm.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/Procedure.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/Procedure.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/create.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/create.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reserveBook.py" beforeDir="false" afterPath="$PROJECT_DIR$/reserveBook.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,7 +191,8 @@
       <workItem from="1716553766908" duration="98000" />
       <workItem from="1716553888777" duration="4403000" />
       <workItem from="1716558389702" duration="1112000" />
-      <workItem from="1716564876912" duration="894000" />
+      <workItem from="1716564876912" duration="1193000" />
+      <workItem from="1716617476770" duration="725000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -302,7 +298,23 @@
       <option name="project" value="LOCAL" />
       <updated>1716377996037</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="fix：冻结用户时不应删除预约记录">
+      <option name="closed" value="true" />
+      <created>1716565923557</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1716565923557</updated>
+    </task>
+    <task id="LOCAL-00015" summary="fix：实验报告修缮">
+      <option name="closed" value="true" />
+      <created>1716566068051</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1716566068051</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -320,12 +332,14 @@
     <MESSAGE value="fix：修改图片存储方式为二进制流" />
     <MESSAGE value="fix bug：预约或借阅表单的权限控制;" />
     <MESSAGE value="add：实验报告;&#10;大功告成！" />
-    <option name="LAST_COMMIT_MESSAGE" value="add：实验报告;&#10;大功告成！" />
+    <MESSAGE value="fix：冻结用户时不应删除预约记录" />
+    <MESSAGE value="fix：实验报告修缮" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix：实验报告修缮" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/LibraryManageSys$reserveBook.coverage" NAME="reserveBook 覆盖结果" MODIFIED="1716565285515" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/LibraryManageSys$count.coverage" NAME="count 覆盖结果" MODIFIED="1716284345899" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/LibraryManageSys$AdminPage.coverage" NAME="AdminPage 覆盖结果" MODIFIED="1716565655596" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/LibraryManageSys$AdminPage.coverage" NAME="AdminPage 覆盖结果" MODIFIED="1716617861812" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/LibraryManageSys$addBook.coverage" NAME="addBook 覆盖结果" MODIFIED="1716365748546" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/LibraryManageSys$reserveForm.coverage" NAME="reserveForm 覆盖结果" MODIFIED="1716376997591" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/LibraryManageSys$borrowForm.coverage" NAME="borrowForm 覆盖结果" MODIFIED="1716565693908" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -337,7 +351,7 @@
     <SUITE FILE_PATH="coverage/LibraryManageSys$Manage.coverage" NAME="Manage 覆盖结果" MODIFIED="1716558851509" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/LibraryManageSys$alterBook.coverage" NAME="alterBook 覆盖结果" MODIFIED="1716367133288" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/LibraryManageSys$Login.coverage" NAME="Login 覆盖结果" MODIFIED="1716376423082" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/LibraryManageSys$main.coverage" NAME="main 覆盖结果" MODIFIED="1716558700759" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/LibraryManageSys$borrowBook.coverage" NAME="borrowBook 覆盖结果" MODIFIED="1716565697686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/LibraryManageSys$main.coverage" NAME="main 覆盖结果" MODIFIED="1716617738648" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/LibraryManageSys$borrowBook.coverage" NAME="borrowBook 覆盖结果" MODIFIED="1716565780948" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
